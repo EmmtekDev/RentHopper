@@ -1,0 +1,4537 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <meta name="theme-color" content="#0A5C48" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <title>RentHopa — Trust-First Rentals in Nigeria</title>
+    <link
+      rel="stylesheet"
+      href="cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.44.0/iconfont/tabler-icons.min.css"
+    />
+    <link
+      href="fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,400&family=Sora:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ═══════════════════════════════════════
+   RESET & ROOT
+═══════════════════════════════════════ */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        -webkit-tap-highlight-color: transparent;
+      }
+      html {
+        font-size: 16px;
+        scroll-behavior: smooth;
+      }
+      :root {
+        --teal: #0a5c48;
+        --teal2: #12876a;
+        --teal3: #d4f0e5;
+        --teal4: #a3dfc6;
+        --teal5: #053d30;
+        --land: #1e1245;
+        --land2: #3a2580;
+        --land3: #eceaff;
+        --land4: #c0b8f5;
+        --land5: #0d0820;
+        --amber: #b5720e;
+        --amber2: #fef3e0;
+        --amber3: #f5c96e;
+        --red: #b82020;
+        --red2: #feecec;
+        --surf: #f7f5f0;
+        --surf2: #edeae3;
+        --surf3: #e0ddd5;
+        --ink: #1e1c19;
+        --ink2: #4a4845;
+        --ink3: #8a8680;
+        --white: #ffffff;
+        --r-sm: 10px;
+        --r: 16px;
+        --r-lg: 24px;
+        --r-xl: 32px;
+        --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+        --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        --shadow-lg: 0 12px 48px rgba(0, 0, 0, 0.16);
+        --nav-h: 64px;
+        --bottom-h: 72px;
+        --transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      body {
+        font-family: "Sora", sans-serif;
+        background: var(--surf2);
+        color: var(--ink);
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      /* ═══════════════════════════════════════
+   TYPOGRAPHY SCALE
+═══════════════════════════════════════ */
+      .t-display {
+        font-family: "Fraunces", serif;
+        font-size: clamp(28px, 5vw, 52px);
+        line-height: 1.12;
+        font-weight: 700;
+      }
+      .t-h1 {
+        font-family: "Fraunces", serif;
+        font-size: clamp(22px, 3.5vw, 36px);
+        line-height: 1.18;
+        font-weight: 600;
+      }
+      .t-h2 {
+        font-family: "Fraunces", serif;
+        font-size: clamp(18px, 2.5vw, 26px);
+        line-height: 1.25;
+        font-weight: 500;
+      }
+      .t-h3 {
+        font-family: "Fraunces", serif;
+        font-size: clamp(15px, 2vw, 20px);
+        line-height: 1.3;
+        font-weight: 500;
+      }
+      .t-body {
+        font-size: clamp(13px, 1.5vw, 15px);
+        line-height: 1.65;
+      }
+      .t-sm {
+        font-size: clamp(11px, 1.2vw, 13px);
+        line-height: 1.6;
+      }
+      .t-xs {
+        font-size: clamp(10px, 1vw, 11px);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+      }
+
+      /* ═══════════════════════════════════════
+   LAYOUT SYSTEM
+═══════════════════════════════════════ */
+      .app-shell {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      /* TOP NAV — desktop/tablet */
+      .top-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        height: var(--nav-h);
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        display: flex;
+        align-items: center;
+        padding: 0 clamp(16px, 4vw, 48px);
+        gap: 24px;
+      }
+      .top-nav .logo {
+        font-family: "Fraunces", serif;
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--teal);
+        letter-spacing: -0.3px;
+        cursor: pointer;
+        flex-shrink: 0;
+      }
+      .top-nav.lmode .logo {
+        color: var(--land);
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        flex: 1;
+      }
+      .nav-link {
+        padding: 8px 16px;
+        border-radius: var(--r-sm);
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--ink2);
+        cursor: pointer;
+        transition: var(--transition);
+        border: none;
+        background: none;
+        font-family: "Sora", sans-serif;
+      }
+      .nav-link:hover {
+        background: var(--surf);
+        color: var(--ink);
+      }
+      .nav-link.active-t {
+        color: var(--teal);
+        background: var(--teal3);
+      }
+      .nav-link.active-l {
+        color: var(--land);
+        background: var(--land3);
+      }
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-left: auto;
+      }
+      .mode-pill {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        border: none;
+        font-family: "Sora", sans-serif;
+        transition: var(--transition);
+      }
+      .mode-pill.t-pill {
+        background: var(--teal3);
+        color: var(--teal5);
+      }
+      .mode-pill.l-pill {
+        background: var(--land3);
+        color: var(--land);
+      }
+      .mode-pill-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+      }
+      .mode-pill.t-pill .mode-pill-dot {
+        background: var(--teal);
+      }
+      .mode-pill.l-pill .mode-pill-dot {
+        background: var(--land);
+      }
+      .avatar-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Fraunces", serif;
+        font-size: 15px;
+        font-weight: 700;
+        color: #fff;
+        cursor: pointer;
+        flex-shrink: 0;
+        border: none;
+        transition: var(--transition);
+      }
+      .avatar-btn.t-av {
+        background: linear-gradient(135deg, var(--teal5), var(--teal2));
+      }
+      .avatar-btn.l-av {
+        background: linear-gradient(135deg, var(--land5), var(--land2));
+      }
+      .avatar-btn:hover {
+        transform: scale(1.06);
+      }
+
+      /* ═══════════════════════════════════════
+   MAIN CONTENT
+═══════════════════════════════════════ */
+      .main {
+        margin-top: var(--nav-h);
+        flex: 1;
+        padding: 0 0 var(--bottom-h);
+      }
+      .page {
+        display: none;
+        animation: fadeUp 0.25s ease;
+      }
+      .page.active {
+        display: block;
+      }
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ═══════════════════════════════════════
+   BOTTOM NAV — mobile only
+═══════════════════════════════════════ */
+      .bottom-nav {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        height: var(--bottom-h);
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+        padding: 0 4px;
+        padding-bottom: env(safe-area-inset-bottom, 0);
+      }
+      .bottom-nav-inner {
+        display: flex;
+        height: 100%;
+        align-items: center;
+      }
+      .bn-item {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+        padding: 8px 4px;
+        cursor: pointer;
+        border: none;
+        background: none;
+        font-family: "Sora", sans-serif;
+        transition: var(--transition);
+        border-radius: var(--r-sm);
+        margin: 4px 2px;
+      }
+      .bn-item i {
+        font-size: 22px;
+        color: var(--ink3);
+        transition: var(--transition);
+      }
+      .bn-label {
+        font-size: 9px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--ink3);
+        transition: var(--transition);
+      }
+      .bn-item.active-t i,
+      .bn-item.active-t .bn-label {
+        color: var(--teal);
+      }
+      .bn-item.active-l i,
+      .bn-item.active-l .bn-label {
+        color: var(--land);
+      }
+      .bn-item:active {
+        transform: scale(0.92);
+      }
+
+      /* ═══════════════════════════════════════
+   CONTAINER & GRID
+═══════════════════════════════════════ */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 clamp(16px, 4vw, 48px);
+      }
+      .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: clamp(12px, 2vw, 24px);
+      }
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: clamp(12px, 2vw, 24px);
+      }
+      .grid-4 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: clamp(10px, 1.5vw, 20px);
+      }
+      .flex-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .flex-between {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .section {
+        padding: clamp(24px, 4vw, 56px) 0;
+      }
+      .section-sm {
+        padding: clamp(16px, 2.5vw, 32px) 0;
+      }
+
+      /* ═══════════════════════════════════════
+   HERO SECTIONS
+═══════════════════════════════════════ */
+      .hero {
+        position: relative;
+        overflow: hidden;
+        padding: clamp(48px, 8vw, 100px) clamp(16px, 4vw, 48px);
+        min-height: clamp(380px, 55vh, 600px);
+        display: flex;
+        align-items: center;
+      }
+      .hero.t-hero {
+        background: linear-gradient(
+          145deg,
+          var(--teal5) 0%,
+          var(--teal) 55%,
+          var(--teal2) 100%
+        );
+      }
+      .hero.l-hero {
+        background: linear-gradient(
+          145deg,
+          var(--land5) 0%,
+          var(--land) 55%,
+          var(--land2) 100%
+        );
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        right: -15%;
+        top: -20%;
+        width: clamp(200px, 40vw, 500px);
+        height: clamp(200px, 40vw, 500px);
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.05);
+      }
+      .hero::after {
+        content: "";
+        position: absolute;
+        left: -10%;
+        bottom: -25%;
+        width: clamp(150px, 30vw, 380px);
+        height: clamp(150px, 30vw, 380px);
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.04);
+      }
+      .hero-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+        position: relative;
+        z-index: 1;
+      }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(24px, 4vw, 64px);
+        align-items: center;
+      }
+      .hero-eyebrow {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 12px;
+      }
+      .hero-title {
+        font-family: "Fraunces", serif;
+        font-size: clamp(30px, 5.5vw, 58px);
+        color: #fff;
+        line-height: 1.1;
+        margin-bottom: 16px;
+      }
+      .hero-sub {
+        font-size: clamp(13px, 1.6vw, 17px);
+        color: rgba(255, 255, 255, 0.72);
+        line-height: 1.7;
+        margin-bottom: 24px;
+      }
+      .hero-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .hero-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(255, 255, 255, 0.14);
+        border-radius: 20px;
+        padding: 6px 14px;
+        font-size: 12px;
+        font-weight: 600;
+        color: #fff;
+      }
+      .hero-visual {
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: var(--r-xl);
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        backdrop-filter: blur(10px);
+      }
+      .hero-stat-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+      .hero-stat {
+        background: rgba(255, 255, 255, 0.12);
+        border-radius: var(--r);
+        padding: 16px;
+        text-align: center;
+      }
+      .hero-stat-n {
+        font-family: "Fraunces", serif;
+        font-size: clamp(20px, 3vw, 30px);
+        color: #fff;
+        font-weight: 700;
+      }
+      .hero-stat-l {
+        font-size: 10px;
+        color: rgba(255, 255, 255, 0.6);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-top: 2px;
+      }
+
+      /* ═══════════════════════════════════════
+   SEARCH BAR
+═══════════════════════════════════════ */
+      .search-bar {
+        background: var(--white);
+        border-radius: var(--r-xl);
+        padding: clamp(8px, 2vw, 16px);
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        box-shadow: var(--shadow-lg);
+        border: 1px solid rgba(0, 0, 0, 0.06);
+      }
+      .search-input {
+        flex: 1;
+        border: none;
+        outline: none;
+        font-family: "Sora", sans-serif;
+        font-size: clamp(13px, 1.5vw, 15px);
+        color: var(--ink);
+        background: transparent;
+        padding: 4px 8px;
+      }
+      .search-input::placeholder {
+        color: var(--ink3);
+      }
+
+      /* ═══════════════════════════════════════
+   FILTER PILLS
+═══════════════════════════════════════ */
+      .pills {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin: clamp(12px, 2vw, 20px) 0;
+      }
+      .pill {
+        padding: 8px 18px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        border: 1.5px solid var(--surf3);
+        background: var(--white);
+        color: var(--ink2);
+        transition: var(--transition);
+        user-select: none;
+        white-space: nowrap;
+      }
+      .pill:hover {
+        border-color: var(--teal);
+        color: var(--teal);
+      }
+      .pill.on-t {
+        background: var(--teal);
+        color: #fff;
+        border-color: var(--teal);
+      }
+      .pill.on-l {
+        background: var(--land);
+        color: #fff;
+        border-color: var(--land);
+      }
+
+      /* ═══════════════════════════════════════
+   PROPERTY CARDS
+═══════════════════════════════════════ */
+      .listings-grid {
+        display: grid;
+        grid-template-columns: repeat(
+          auto-fill,
+          minmax(clamp(260px, 30vw, 320px), 1fr)
+        );
+        gap: clamp(12px, 2vw, 24px);
+      }
+      .prop-card {
+        background: var(--white);
+        border-radius: var(--r-lg);
+        overflow: hidden;
+        border: 1px solid rgba(0, 0, 0, 0.07);
+        cursor: pointer;
+        transition:
+          transform var(--transition),
+          box-shadow var(--transition);
+        box-shadow: var(--shadow-sm);
+      }
+      .prop-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+      }
+      .prop-card:active {
+        transform: scale(0.98);
+      }
+      .prop-img {
+        height: clamp(160px, 22vw, 220px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .prop-img-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.08);
+      }
+      .prop-badges {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        display: flex;
+        gap: 6px;
+      }
+      .prop-save {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+      }
+      .prop-save-btn {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(8px);
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+      }
+      .prop-save-btn:hover {
+        background: rgba(255, 255, 255, 0.35);
+        transform: scale(1.1);
+      }
+      .prop-body {
+        padding: clamp(12px, 2vw, 18px);
+      }
+      .prop-title {
+        font-family: "Fraunces", serif;
+        font-size: clamp(15px, 1.8vw, 18px);
+        color: var(--ink);
+        margin-bottom: 4px;
+        font-weight: 500;
+      }
+      .prop-loc {
+        font-size: 12px;
+        color: var(--ink3);
+        margin-bottom: 10px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .prop-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .prop-price {
+        font-size: clamp(16px, 2vw, 20px);
+        font-weight: 700;
+        color: var(--teal);
+        font-family: "Fraunces", serif;
+      }
+      .prop-price.lm {
+        color: var(--land);
+      }
+      .prop-price span {
+        font-size: 11px;
+        color: var(--ink3);
+        font-weight: 400;
+        font-family: "Sora", sans-serif;
+      }
+      .prop-escrow {
+        font-size: 10px;
+        font-weight: 700;
+        color: var(--teal);
+        letter-spacing: 0.3px;
+      }
+      .prop-features {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        margin-top: 10px;
+      }
+      .prop-feat {
+        font-size: 10px;
+        padding: 3px 8px;
+        border-radius: 6px;
+        background: var(--surf);
+        color: var(--ink2);
+        font-weight: 600;
+      }
+      .trust-score {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin-top: 8px;
+        padding-top: 8px;
+        border-top: 1px solid var(--surf2);
+      }
+      .trust-bar {
+        flex: 1;
+        height: 4px;
+        background: var(--surf3);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+      .trust-fill {
+        height: 100%;
+        border-radius: 2px;
+      }
+
+      /* ═══════════════════════════════════════
+   BADGES
+═══════════════════════════════════════ */
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 10px;
+        font-weight: 700;
+        padding: 4px 10px;
+        border-radius: 20px;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+      }
+      .badge-teal {
+        background: var(--teal3);
+        color: var(--teal5);
+      }
+      .badge-land {
+        background: var(--land3);
+        color: var(--land);
+      }
+      .badge-amber {
+        background: var(--amber2);
+        color: var(--amber);
+      }
+      .badge-red {
+        background: var(--red2);
+        color: var(--red);
+      }
+      .badge-gray {
+        background: var(--surf3);
+        color: var(--ink2);
+      }
+      .badge-white {
+        background: rgba(255, 255, 255, 0.2);
+        color: #fff;
+        backdrop-filter: blur(6px);
+      }
+
+      /* ═══════════════════════════════════════
+   BUTTONS
+═══════════════════════════════════════ */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: clamp(10px, 1.5vw, 14px) clamp(18px, 3vw, 28px);
+        border-radius: var(--r);
+        border: none;
+        font-family: "Sora", sans-serif;
+        font-size: clamp(12px, 1.4vw, 14px);
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+        letter-spacing: 0.1px;
+        white-space: nowrap;
+        text-decoration: none;
+      }
+      .btn:active {
+        transform: scale(0.96);
+      }
+      .btn:disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+        transform: none;
+      }
+      .btn-full {
+        width: 100%;
+      }
+      .btn-teal {
+        background: var(--teal);
+        color: #fff;
+      }
+      .btn-teal:hover:not(:disabled) {
+        background: var(--teal5);
+      }
+      .btn-land {
+        background: var(--land);
+        color: #fff;
+      }
+      .btn-land:hover:not(:disabled) {
+        background: var(--land5);
+      }
+      .btn-amber {
+        background: var(--amber);
+        color: #fff;
+      }
+      .btn-outline-t {
+        background: transparent;
+        color: var(--teal);
+        border: 1.5px solid var(--teal);
+      }
+      .btn-outline-t:hover {
+        background: var(--teal3);
+      }
+      .btn-outline-l {
+        background: transparent;
+        color: var(--land);
+        border: 1.5px solid var(--land);
+      }
+      .btn-outline-l:hover {
+        background: var(--land3);
+      }
+      .btn-ghost {
+        background: var(--surf);
+        color: var(--ink);
+        border: 1px solid var(--surf3);
+      }
+      .btn-ghost:hover {
+        background: var(--surf2);
+      }
+      .btn-sm {
+        padding: 8px 16px;
+        font-size: 12px;
+        border-radius: var(--r-sm);
+      }
+      .btn-lg {
+        padding: 16px 36px;
+        font-size: 15px;
+        border-radius: var(--r-lg);
+      }
+
+      /* ═══════════════════════════════════════
+   CARDS & PANELS
+═══════════════════════════════════════ */
+      .card {
+        background: var(--white);
+        border-radius: var(--r-lg);
+        padding: clamp(16px, 2.5vw, 24px);
+        border: 1px solid rgba(0, 0, 0, 0.07);
+        box-shadow: var(--shadow-sm);
+      }
+      .card-teal {
+        background: var(--teal3);
+        border-color: rgba(10, 92, 72, 0.12);
+      }
+      .card-land {
+        background: var(--land3);
+        border-color: rgba(30, 18, 69, 0.12);
+      }
+      .card-amber {
+        background: var(--amber2);
+        border-color: rgba(181, 114, 14, 0.12);
+      }
+      .card-red {
+        background: var(--red2);
+        border-color: rgba(184, 32, 32, 0.12);
+      }
+      .card-dark {
+        background: var(--teal);
+        border: none;
+        color: #fff;
+      }
+      .card-dark-l {
+        background: var(--land);
+        border: none;
+        color: #fff;
+      }
+
+      /* ═══════════════════════════════════════
+   FORM ELEMENTS
+═══════════════════════════════════════ */
+      .form-group {
+        margin-bottom: clamp(14px, 2vw, 20px);
+      }
+      .form-label {
+        display: block;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+        color: var(--ink2);
+        margin-bottom: 6px;
+      }
+      .form-input {
+        width: 100%;
+        padding: clamp(11px, 1.5vw, 14px) clamp(13px, 2vw, 16px);
+        border: 1.5px solid var(--surf3);
+        border-radius: var(--r);
+        font-family: "Sora", sans-serif;
+        font-size: clamp(13px, 1.5vw, 15px);
+        color: var(--ink);
+        background: var(--white);
+        outline: none;
+        transition: var(--transition);
+      }
+      .form-input:focus {
+        border-color: var(--teal);
+        box-shadow: 0 0 0 3px rgba(10, 92, 72, 0.1);
+      }
+      .form-input.lf:focus {
+        border-color: var(--land);
+        box-shadow: 0 0 0 3px rgba(30, 18, 69, 0.1);
+      }
+      .form-input::placeholder {
+        color: var(--ink3);
+      }
+      select.form-input {
+        appearance: none;
+        cursor: pointer;
+      }
+      textarea.form-input {
+        resize: none;
+        line-height: 1.65;
+      }
+
+      /* ═══════════════════════════════════════
+   DIVIDER
+═══════════════════════════════════════ */
+      .divider {
+        height: 1px;
+        background: rgba(0, 0, 0, 0.07);
+        margin: clamp(12px, 2vw, 20px) 0;
+      }
+
+      /* ═══════════════════════════════════════
+   SCORE BAR
+═══════════════════════════════════════ */
+      .score-bar-wrap {
+        background: var(--surf3);
+        border-radius: 4px;
+        height: 6px;
+        overflow: hidden;
+        margin: 6px 0;
+      }
+      .score-bar-fill {
+        height: 100%;
+        border-radius: 4px;
+        transition: width 1s ease;
+      }
+
+      /* ═══════════════════════════════════════
+   AI RESULT BOX
+═══════════════════════════════════════ */
+      .ai-box {
+        border-radius: var(--r);
+        padding: clamp(12px, 2vw, 16px);
+        margin-top: 14px;
+        display: none;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+      }
+      .ai-box.show {
+        display: block;
+      }
+      .ai-box-label {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .ai-box-text {
+        font-size: clamp(12px, 1.5vw, 14px);
+        line-height: 1.75;
+        white-space: pre-line;
+      }
+
+      /* ═══════════════════════════════════════
+   SPINNER
+═══════════════════════════════════════ */
+      .spinner {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-top-color: #fff;
+        border-radius: 50%;
+        animation: spin 0.7s linear infinite;
+        vertical-align: middle;
+        margin-right: 6px;
+      }
+      .spinner-dark {
+        border-color: rgba(0, 0, 0, 0.15);
+        border-top-color: var(--teal);
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* ═══════════════════════════════════════
+   CHAT
+═══════════════════════════════════════ */
+      .chat-container {
+        display: flex;
+        flex-direction: column;
+        height: clamp(340px, 50vh, 520px);
+      }
+      .chat-messages {
+        flex: 1;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 4px;
+      }
+      .chat-messages::-webkit-scrollbar {
+        width: 0;
+      }
+      .bubble {
+        max-width: 82%;
+        padding: 11px 15px;
+        border-radius: 18px;
+        font-size: clamp(12px, 1.5vw, 14px);
+        line-height: 1.65;
+      }
+      .bubble.user {
+        background: var(--teal);
+        color: #fff;
+        align-self: flex-end;
+        border-bottom-right-radius: 4px;
+      }
+      .bubble.user.lm {
+        background: var(--land);
+      }
+      .bubble.bot {
+        background: var(--white);
+        color: var(--ink);
+        align-self: flex-start;
+        border-bottom-left-radius: 4px;
+        border: 1px solid rgba(0, 0, 0, 0.07);
+        box-shadow: var(--shadow-sm);
+      }
+      .bubble.thinking {
+        color: var(--ink3);
+        font-style: italic;
+      }
+      .chat-input-row {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        margin-top: 14px;
+        padding-top: 14px;
+        border-top: 1px solid var(--surf3);
+      }
+      .chat-input {
+        flex: 1;
+        padding: 12px 16px;
+        border: 1.5px solid var(--surf3);
+        border-radius: 24px;
+        font-family: "Sora", sans-serif;
+        font-size: clamp(12px, 1.5vw, 14px);
+        color: var(--ink);
+        outline: none;
+        background: var(--white);
+        transition: var(--transition);
+      }
+      .chat-input:focus {
+        border-color: var(--teal);
+      }
+      .chat-send {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: var(--transition);
+      }
+      .chat-send:hover {
+        transform: scale(1.08);
+      }
+      .chat-send.t-cs {
+        background: var(--teal);
+      }
+      .chat-send.l-cs {
+        background: var(--land);
+      }
+
+      /* ═══════════════════════════════════════
+   MODAL / OVERLAY
+═══════════════════════════════════════ */
+      .modal-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(6px);
+        display: none;
+        align-items: flex-end;
+        justify-content: center;
+        padding: 20px;
+      }
+      .modal-overlay.show {
+        display: flex;
+      }
+      @media (min-width: 640px) {
+        .modal-overlay {
+          align-items: center;
+        }
+      }
+      .modal {
+        background: var(--white);
+        border-radius: var(--r-xl);
+        padding: clamp(20px, 3vw, 36px);
+        width: 100%;
+        max-width: 480px;
+        animation: slideUp 0.3s ease;
+      }
+      @keyframes slideUp {
+        from {
+          transform: translateY(30px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      .modal-title {
+        font-family: "Fraunces", serif;
+        font-size: clamp(18px, 2.5vw, 24px);
+        margin-bottom: 6px;
+      }
+      .modal-sub {
+        font-size: 13px;
+        color: var(--ink3);
+        margin-bottom: 20px;
+        line-height: 1.6;
+      }
+
+      /* ═══════════════════════════════════════
+   MODE OPTIONS
+═══════════════════════════════════════ */
+      .mode-option {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 16px;
+        border-radius: var(--r-lg);
+        margin-bottom: 10px;
+        cursor: pointer;
+        border: 1.5px solid transparent;
+        transition: var(--transition);
+      }
+      .mode-option:hover {
+        transform: translateY(-1px);
+        box-shadow: var(--shadow);
+      }
+      .mode-option.t-opt {
+        background: var(--teal3);
+        border-color: rgba(10, 92, 72, 0.15);
+      }
+      .mode-option.l-opt {
+        background: var(--land3);
+        border-color: rgba(30, 18, 69, 0.15);
+      }
+      .mode-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 26px;
+        flex-shrink: 0;
+      }
+      .mode-title {
+        font-family: "Fraunces", serif;
+        font-size: 17px;
+        color: var(--ink);
+        margin-bottom: 3px;
+      }
+      .mode-desc {
+        font-size: 12px;
+        color: var(--ink3);
+      }
+
+      /* ═══════════════════════════════════════
+   VERIFICATION STEPS
+═══════════════════════════════════════ */
+      .vstep {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        padding: 16px;
+        border-radius: var(--r-lg);
+        margin-bottom: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        background: var(--white);
+        cursor: pointer;
+        transition: var(--transition);
+      }
+      .vstep:hover {
+        background: var(--surf);
+        transform: translateX(2px);
+      }
+      .vstep.done {
+        background: var(--teal3);
+        border-color: rgba(10, 92, 72, 0.15);
+      }
+      .vstep.current {
+        background: var(--land3);
+        border-color: rgba(30, 18, 69, 0.2);
+      }
+      .vstep-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-size: 20px;
+      }
+      .vstep-title {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--ink);
+        margin-bottom: 3px;
+      }
+      .vstep-desc {
+        font-size: 12px;
+        color: var(--ink3);
+        line-height: 1.5;
+      }
+
+      /* ═══════════════════════════════════════
+   DASHBOARD METRICS
+═══════════════════════════════════════ */
+      .metric-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: clamp(10px, 2vw, 16px);
+        margin-bottom: clamp(16px, 2.5vw, 28px);
+      }
+      @media (min-width: 640px) {
+        .metric-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+      .metric-card {
+        background: var(--white);
+        border-radius: var(--r-lg);
+        padding: clamp(14px, 2vw, 20px);
+        border: 1px solid rgba(0, 0, 0, 0.07);
+      }
+      .metric-n {
+        font-family: "Fraunces", serif;
+        font-size: clamp(20px, 3vw, 28px);
+        color: var(--land);
+        margin-bottom: 4px;
+      }
+      .metric-n.t-n {
+        color: var(--teal);
+      }
+      .metric-l {
+        font-size: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--ink3);
+      }
+      .metric-change {
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--teal2);
+        margin-top: 4px;
+      }
+
+      /* ═══════════════════════════════════════
+   TABLE ROWS
+═══════════════════════════════════════ */
+      .table-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: clamp(11px, 1.8vw, 15px) 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        cursor: pointer;
+      }
+      .table-row:last-child {
+        border-bottom: none;
+      }
+      .table-row-left {
+        font-size: clamp(12px, 1.5vw, 14px);
+        font-weight: 500;
+        color: var(--ink);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .table-row-right {
+        font-size: clamp(11px, 1.3vw, 13px);
+        color: var(--ink3);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      /* ═══════════════════════════════════════
+   TENANT LIST
+═══════════════════════════════════════ */
+      .tenant-row {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        padding: 14px 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      }
+      .tenant-row:last-child {
+        border-bottom: none;
+      }
+      .tenant-av {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Fraunces", serif;
+        font-size: 16px;
+        font-weight: 700;
+        color: #fff;
+      }
+      .tenant-info {
+        flex: 1;
+      }
+      .tenant-name {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--ink);
+        margin-bottom: 2px;
+      }
+      .tenant-sub {
+        font-size: 11px;
+        color: var(--ink3);
+      }
+
+      /* ═══════════════════════════════════════
+   MARKET BARS
+═══════════════════════════════════════ */
+      .market-bars {
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+        margin-top: 14px;
+      }
+      .market-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .market-lbl {
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--ink2);
+        width: clamp(55px, 8vw, 80px);
+        flex-shrink: 0;
+      }
+      .market-track {
+        flex: 1;
+        height: 22px;
+        background: var(--surf2);
+        border-radius: 5px;
+        overflow: hidden;
+      }
+      .market-fill {
+        height: 100%;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+        font-size: 10px;
+        font-weight: 700;
+        color: #fff;
+      }
+
+      /* ═══════════════════════════════════════
+   ESCROW STEPS
+═══════════════════════════════════════ */
+      .escrow-step {
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+        margin-bottom: 16px;
+      }
+      .escrow-num {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        font-weight: 700;
+        color: #fff;
+        flex-shrink: 0;
+      }
+      .escrow-num.t-n {
+        background: var(--teal);
+      }
+      .escrow-num.l-n {
+        background: var(--land);
+      }
+      .escrow-step-title {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--ink);
+        margin-bottom: 3px;
+      }
+      .escrow-step-desc {
+        font-size: 12px;
+        color: var(--ink3);
+        line-height: 1.6;
+      }
+
+      /* ═══════════════════════════════════════
+   TOAST
+═══════════════════════════════════════ */
+      .toast {
+        position: fixed;
+        bottom: calc(var(--bottom-h) + 16px);
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--ink);
+        color: #fff;
+        font-size: 13px;
+        font-weight: 500;
+        padding: 10px 22px;
+        border-radius: 24px;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+        z-index: 500;
+        box-shadow: var(--shadow);
+      }
+      .toast.show {
+        opacity: 1;
+      }
+      @media (min-width: 768px) {
+        .toast {
+          bottom: 20px;
+        }
+      }
+
+      /* ═══════════════════════════════════════
+   LEASE PROGRESS
+═══════════════════════════════════════ */
+      .lease-progress {
+        height: 5px;
+        background: var(--surf3);
+        border-radius: 3px;
+        overflow: hidden;
+        margin-top: 10px;
+      }
+      .lease-fill {
+        height: 100%;
+        background: var(--teal);
+        border-radius: 3px;
+      }
+
+      /* ═══════════════════════════════════════
+   UPLOAD ZONE
+═══════════════════════════════════════ */
+      .upload-zone {
+        border: 2px dashed var(--surf3);
+        border-radius: var(--r-lg);
+        padding: clamp(24px, 4vw, 40px);
+        text-align: center;
+        cursor: pointer;
+        transition: var(--transition);
+        background: var(--white);
+        margin-bottom: 20px;
+      }
+      .upload-zone:hover {
+        border-color: var(--land);
+        background: var(--land3);
+      }
+      .upload-zone.done {
+        border-color: var(--teal);
+        background: var(--teal3);
+      }
+
+      /* ═══════════════════════════════════════
+   SELFIE CAM
+═══════════════════════════════════════ */
+      .selfie-cam {
+        height: clamp(180px, 30vw, 260px);
+        background: var(--ink);
+        border-radius: var(--r-lg);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 16px;
+        position: relative;
+        overflow: hidden;
+      }
+      .cam-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(30, 18, 69, 0.7),
+          rgba(58, 37, 128, 0.5)
+        );
+      }
+      .cam-border {
+        position: absolute;
+        inset: 16px;
+        border: 2px dashed rgba(255, 255, 255, 0.25);
+        border-radius: var(--r-lg);
+      }
+
+      /* ═══════════════════════════════════════
+   FRAUD CHECK ROWS
+═══════════════════════════════════════ */
+      .fraud-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 14px;
+        border-radius: var(--r-sm);
+        margin-bottom: 6px;
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      /* ═══════════════════════════════════════
+   DETAIL PAGE
+═══════════════════════════════════════ */
+      .detail-layout {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      @media (min-width: 900px) {
+        .detail-layout {
+          grid-template-columns: 1.6fr 1fr;
+        }
+      }
+      .detail-img {
+        height: clamp(220px, 32vw, 420px);
+        border-radius: var(--r-xl);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .detail-img-dots {
+        position: absolute;
+        bottom: 16px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 6px;
+      }
+      .detail-img-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+      }
+
+      /* ═══════════════════════════════════════
+   STICKY CARD (detail sidebar)
+═══════════════════════════════════════ */
+      .sticky-card {
+        position: sticky;
+        top: calc(var(--nav-h) + 20px);
+      }
+
+      /* ═══════════════════════════════════════
+   BACK BUTTON
+═══════════════════════════════════════ */
+      .back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--ink2);
+        cursor: pointer;
+        background: var(--white);
+        border: 1px solid var(--surf3);
+        border-radius: var(--r-sm);
+        padding: 8px 16px;
+        transition: var(--transition);
+        margin-bottom: 20px;
+      }
+      .back-btn:hover {
+        background: var(--surf);
+        color: var(--ink);
+      }
+      .back-btn.lm {
+        color: var(--land);
+      }
+
+      /* ═══════════════════════════════════════
+   PENDING STATUS
+═══════════════════════════════════════ */
+      .status-box {
+        text-align: center;
+        padding: clamp(32px, 5vw, 60px) clamp(16px, 4vw, 40px);
+      }
+      .status-icon {
+        width: clamp(70px, 12vw, 100px);
+        height: clamp(70px, 12vw, 100px);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto clamp(18px, 3vw, 28px);
+      }
+      .status-icon i {
+        font-size: clamp(34px, 6vw, 48px);
+      }
+
+      /* ═══════════════════════════════════════
+   APPLICATION ROW
+═══════════════════════════════════════ */
+      .app-row {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        padding: 14px;
+        border-radius: var(--r-lg);
+        background: var(--white);
+        margin-bottom: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.07);
+      }
+      .app-av {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Fraunces", serif;
+        font-size: 16px;
+        font-weight: 700;
+        color: #fff;
+      }
+      .app-actions {
+        display: flex;
+        gap: 8px;
+        margin-left: auto;
+      }
+
+      /* ═══════════════════════════════════════
+   MAINTENANCE CARD
+═══════════════════════════════════════ */
+      .maint-card {
+        display: flex;
+        align-items: flex-start;
+        gap: 13px;
+        padding: 14px;
+        border-radius: var(--r-lg);
+        background: var(--white);
+        border: 1px solid rgba(0, 0, 0, 0.07);
+        margin-bottom: 10px;
+      }
+      .maint-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* ═══════════════════════════════════════
+   BECOME LANDLORD CTA
+═══════════════════════════════════════ */
+      .ll-cta {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: clamp(16px, 2.5vw, 24px);
+        border-radius: var(--r-lg);
+        background: var(--land3);
+        border: 1.5px solid rgba(30, 18, 69, 0.12);
+        cursor: pointer;
+        transition: var(--transition);
+      }
+      .ll-cta:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow);
+      }
+
+      /* ═══════════════════════════════════════
+   PROFILE AVATAR BIG
+═══════════════════════════════════════ */
+      .profile-av {
+        width: clamp(64px, 10vw, 88px);
+        height: clamp(64px, 10vw, 88px);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Fraunces", serif;
+        font-size: clamp(22px, 4vw, 32px);
+        font-weight: 700;
+        color: #fff;
+      }
+      .profile-av.t-av {
+        background: linear-gradient(135deg, var(--teal5), var(--teal2));
+      }
+      .profile-av.l-av {
+        background: linear-gradient(135deg, var(--land5), var(--land2));
+      }
+
+      /* ═══════════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+═══════════════════════════════════════ */
+      @media (max-width: 767px) {
+        :root {
+          --bottom-h: 72px;
+        }
+        .bottom-nav {
+          display: flex;
+        }
+        .nav-links {
+          display: none;
+        }
+        .top-nav {
+          padding: 0 16px;
+        }
+        .top-nav .logo {
+          font-size: 20px;
+        }
+        .nav-right .mode-pill {
+          display: none;
+        }
+        .main {
+          padding-bottom: calc(
+            var(--bottom-h) + env(safe-area-inset-bottom, 0)
+          );
+        }
+        .hero-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero-visual {
+          display: none;
+        }
+        .grid-2,
+        .grid-3,
+        .grid-4 {
+          grid-template-columns: 1fr;
+        }
+        .listings-grid {
+          grid-template-columns: 1fr;
+        }
+        .metric-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .detail-layout {
+          grid-template-columns: 1fr;
+        }
+        .sticky-card {
+          position: static;
+        }
+        .section {
+          padding: 20px 0;
+        }
+      }
+      @media (min-width: 768px) and (max-width: 1023px) {
+        .listings-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .grid-3 {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .hero-visual {
+          padding: 16px;
+        }
+      }
+      @media (min-width: 768px) {
+        .bottom-nav {
+          display: none;
+        }
+        .nav-links {
+          display: flex;
+        }
+      }
+
+      /* ═══════════════════════════════════════
+   PAGE: PROGRESS BAR
+═══════════════════════════════════════ */
+      .prog-bar-wrap {
+        background: var(--surf3);
+        border-radius: 4px;
+        height: 6px;
+        overflow: hidden;
+      }
+      .prog-bar-fill {
+        height: 100%;
+        border-radius: 4px;
+        transition: width 0.6s ease;
+        background: var(--land);
+      }
+
+      /* ═══════════════════════════════════════
+   SECTION HEADER
+═══════════════════════════════════════ */
+      .sec-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: clamp(14px, 2vw, 22px);
+      }
+      .sec-title {
+        font-family: "Fraunces", serif;
+        font-size: clamp(17px, 2.5vw, 24px);
+        color: var(--ink);
+      }
+      .sec-link {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--teal);
+        cursor: pointer;
+      }
+      .sec-link.lm {
+        color: var(--land);
+      }
+
+      /* ADDRESS TAGS */
+      .addr-box {
+        background: var(--surf);
+        border-radius: var(--r-sm);
+        padding: 12px 14px;
+        margin-top: -8px;
+        margin-bottom: 12px;
+        display: none;
+      }
+      .addr-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 7px;
+      }
+      .addr-tag {
+        font-size: 11px;
+        padding: 3px 10px;
+        border-radius: 6px;
+        background: var(--land3);
+        color: var(--land);
+        font-weight: 700;
+      }
+
+      /* STEP STATUS */
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 10px;
+        font-weight: 700;
+        padding: 4px 10px;
+        border-radius: 20px;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+      }
+      .chip-live {
+        background: var(--teal3);
+        color: var(--teal5);
+      }
+      .chip-pending {
+        background: var(--amber2);
+        color: var(--amber);
+      }
+      .chip-draft {
+        background: var(--surf3);
+        color: var(--ink2);
+      }
+      .chip-locked {
+        background: var(--surf3);
+        color: var(--ink3);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ═══ TOAST ═══ -->
+    <div class="toast" id="toast"></div>
+
+    <!-- ═══ MODE SWITCH MODAL ═══ -->
+    <div class="modal-overlay" id="mode-modal" onclick="closeModeModal(event)">
+      <div class="modal" onclick="event.stopPropagation()">
+        <div class="modal-title">Switch mode</div>
+        <div class="modal-sub">
+          You're signed in as Uzoigwe. Switch seamlessly — no logout required.
+        </div>
+        <div class="mode-option t-opt" onclick="setMode('tenant')">
+          <div class="mode-icon" style="background: var(--teal3)">
+            <i class="ti ti-home" style="color: var(--teal)"></i>
+          </div>
+          <div>
+            <div class="mode-title">Tenant Mode</div>
+            <div class="mode-desc">
+              Search homes, save listings, pay via escrow
+            </div>
+          </div>
+          <div
+            id="dot-t"
+            style="
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              background: var(--teal);
+              margin-left: auto;
+              display: none;
+            "
+          ></div>
+        </div>
+        <div
+          class="mode-option l-opt"
+          id="ll-mode-btn"
+          onclick="handleLandlordSwitch()"
+        >
+          <div class="mode-icon" style="background: var(--land3)">
+            <i class="ti ti-building-estate" style="color: var(--land)"></i>
+          </div>
+          <div>
+            <div class="mode-title">Landlord Mode</div>
+            <div class="mode-desc" id="ll-opt-desc">
+              Manage properties, tenants, earn income
+            </div>
+          </div>
+          <div
+            id="dot-l"
+            style="
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              background: var(--land);
+              margin-left: auto;
+              display: none;
+            "
+          ></div>
+        </div>
+        <button
+          class="btn btn-ghost btn-full"
+          onclick="closeModeModal()"
+          style="margin-top: 8px"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+     TOP NAVIGATION
+═══════════════════════════════════════ -->
+    <nav class="top-nav" id="top-nav">
+      <div class="logo" onclick="navTo('home')" id="nav-logo">RentHopa</div>
+      <div class="nav-links" id="nav-links">
+        <!-- filled by JS -->
+      </div>
+      <div class="nav-right">
+        <button
+          class="mode-pill t-pill"
+          id="mode-pill-btn"
+          onclick="openModeModal()"
+        >
+          <div class="mode-pill-dot"></div>
+          <span id="mode-pill-label">Tenant Mode</span>
+        </button>
+        <button
+          class="avatar-btn t-av"
+          id="nav-avatar"
+          onclick="navTo('t-profile')"
+        >
+          UG
+        </button>
+      </div>
+    </nav>
+
+    <!-- ═══════════════════════════════════════
+     MAIN CONTENT
+═══════════════════════════════════════ -->
+    <main class="main">
+      <!-- ─── TENANT: HOME ─── -->
+      <div class="page active" id="page-home">
+        <!-- HERO -->
+        <div class="hero t-hero">
+          <div class="hero-inner">
+            <div class="hero-grid">
+              <div>
+                <div class="hero-eyebrow">
+                  Nigeria's trust-first rental platform
+                </div>
+                <h1 class="hero-title">
+                  Find a home<br /><em
+                    style="font-style: italic; font-weight: 300"
+                    >you can trust.</em
+                  >
+                </h1>
+                <p class="hero-sub">
+                  No agents. No scams. Pay only when keys are in your hand —
+                  protected by escrow every step of the way.
+                </p>
+                <div class="hero-tags">
+                  <span class="hero-tag"
+                    ><i class="ti ti-shield-check"></i> Escrow-protected</span
+                  >
+                  <span class="hero-tag"
+                    ><i class="ti ti-user-check"></i> Verified landlords</span
+                  >
+                  <span class="hero-tag"
+                    ><i class="ti ti-lock"></i> Zero-fraud system</span
+                  >
+                </div>
+              </div>
+              <div class="hero-visual">
+                <div class="hero-stat-row">
+                  <div class="hero-stat">
+                    <div class="hero-stat-n">2,400+</div>
+                    <div class="hero-stat-l">Listings</div>
+                  </div>
+                  <div class="hero-stat">
+                    <div class="hero-stat-n">₦0</div>
+                    <div class="hero-stat-l">Scams</div>
+                  </div>
+                  <div class="hero-stat">
+                    <div class="hero-stat-n">100%</div>
+                    <div class="hero-stat-l">Verified</div>
+                  </div>
+                </div>
+                <div
+                  style="
+                    background: rgba(255, 255, 255, 0.1);
+                    border-radius: var(--r-lg);
+                    padding: 16px;
+                  "
+                >
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      gap: 10px;
+                      margin-bottom: 10px;
+                    "
+                  >
+                    <div
+                      style="
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 10px;
+                        background: rgba(255, 255, 255, 0.15);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                      "
+                    >
+                      <i
+                        class="ti ti-lock"
+                        style="color: #fff; font-size: 20px"
+                      ></i>
+                    </div>
+                    <div>
+                      <div
+                        style="font-size: 13px; font-weight: 600; color: #fff"
+                      >
+                        Escrow active
+                      </div>
+                      <div
+                        style="font-size: 11px; color: rgba(255, 255, 255, 0.6)"
+                      >
+                        ₦1,836,000 secured
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    style="
+                      height: 4px;
+                      background: rgba(255, 255, 255, 0.15);
+                      border-radius: 2px;
+                      overflow: hidden;
+                    "
+                  >
+                    <div
+                      style="
+                        height: 100%;
+                        width: 42%;
+                        background: #fff;
+                        border-radius: 2px;
+                      "
+                    ></div>
+                  </div>
+                  <div
+                    style="
+                      font-size: 10px;
+                      color: rgba(255, 255, 255, 0.5);
+                      margin-top: 6px;
+                      font-weight: 600;
+                    "
+                  >
+                    Awaiting key handover · 42% complete
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SEARCH -->
+        <div
+          class="container"
+          style="margin-top: -28px; position: relative; z-index: 10"
+        >
+          <div class="search-bar">
+            <i
+              class="ti ti-search"
+              style="
+                font-size: 20px;
+                color: var(--ink3);
+                flex-shrink: 0;
+                margin-left: 4px;
+              "
+            ></i>
+            <input
+              class="search-input"
+              placeholder="Search by area, estate, LGA…"
+              id="search-input"
+            />
+            <select
+              class="search-input"
+              style="max-width: 130px; cursor: pointer; flex-shrink: 0"
+            >
+              <option>All types</option>
+              <option>Flat</option>
+              <option>Self-contain</option>
+              <option>Duplex</option>
+              <option>Bungalow</option>
+            </select>
+            <button class="btn btn-teal btn-sm" style="flex-shrink: 0">
+              <i class="ti ti-search"></i><span class="hide-sm">Search</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- FILTERS + LISTINGS -->
+        <div class="container section-sm">
+          <div class="pills">
+            <span class="pill on-t" onclick="fp(this, 't')">All</span>
+            <span class="pill" onclick="fp(this, 't')">Self-contain</span>
+            <span class="pill" onclick="fp(this, 't')">Flat</span>
+            <span class="pill" onclick="fp(this, 't')">Duplex</span>
+            <span class="pill" onclick="fp(this, 't')">Bungalow</span>
+            <span class="pill" onclick="fp(this, 't')">Under ₦1M</span>
+            <span class="pill" onclick="fp(this, 't')">Lekki</span>
+            <span class="pill" onclick="fp(this, 't')">Yaba</span>
+          </div>
+          <div class="sec-header">
+            <h2 class="sec-title">Available homes</h2>
+            <span class="sec-link">See all →</span>
+          </div>
+          <div class="listings-grid">
+            <!-- Card 1 -->
+            <div class="prop-card" onclick="navTo('t-listing')">
+              <div
+                class="prop-img"
+                style="background: linear-gradient(135deg, #0a5c48, #12876a)"
+              >
+                <i
+                  class="ti ti-building"
+                  style="font-size: 56px; color: rgba(255, 255, 255, 0.18)"
+                ></i>
+                <div class="prop-badges">
+                  <span class="badge badge-white"
+                    ><i class="ti ti-shield-check"></i> Verified</span
+                  >
+                </div>
+                <div class="prop-save">
+                  <button
+                    class="prop-save-btn"
+                    onclick="
+                      event.stopPropagation();
+                      toggleSave(this);
+                    "
+                  >
+                    <i
+                      class="ti ti-heart"
+                      style="font-size: 16px; color: #fff"
+                    ></i>
+                  </button>
+                </div>
+              </div>
+              <div class="prop-body">
+                <div class="prop-title">Modern 2-Bedroom Flat</div>
+                <div class="prop-loc">
+                  <i class="ti ti-map-pin"></i> Lekki Phase 1, Lagos
+                </div>
+                <div class="prop-meta">
+                  <div class="prop-price">₦1.8M <span>/ year</span></div>
+                  <span class="prop-escrow"
+                    ><i class="ti ti-lock"></i> Escrow</span
+                  >
+                </div>
+                <div class="prop-features">
+                  <span class="prop-feat">2 Beds</span
+                  ><span class="prop-feat">1 Bath</span
+                  ><span class="prop-feat">Water</span
+                  ><span class="prop-feat">Security</span>
+                </div>
+                <div class="trust-score">
+                  <div
+                    style="
+                      font-size: 10px;
+                      font-weight: 700;
+                      color: var(--teal);
+                    "
+                  >
+                    98/100
+                  </div>
+                  <div class="trust-bar">
+                    <div
+                      class="trust-fill"
+                      style="width: 98%; background: var(--teal2)"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="prop-card" onclick="navTo('t-listing')">
+              <div
+                class="prop-img"
+                style="background: linear-gradient(135deg, #534ab7, #7f77dd)"
+              >
+                <i
+                  class="ti ti-home"
+                  style="font-size: 56px; color: rgba(255, 255, 255, 0.18)"
+                ></i>
+                <div class="prop-badges">
+                  <span class="badge badge-white"
+                    ><i class="ti ti-shield-check"></i> Verified</span
+                  >
+                </div>
+                <div class="prop-save">
+                  <button
+                    class="prop-save-btn"
+                    onclick="
+                      event.stopPropagation();
+                      toggleSave(this);
+                    "
+                  >
+                    <i
+                      class="ti ti-heart"
+                      style="font-size: 16px; color: #fff"
+                    ></i>
+                  </button>
+                </div>
+              </div>
+              <div class="prop-body">
+                <div class="prop-title">Cozy Self-Contain Studio</div>
+                <div class="prop-loc">
+                  <i class="ti ti-map-pin"></i> Yaba, Lagos
+                </div>
+                <div class="prop-meta">
+                  <div class="prop-price">₦650k <span>/ year</span></div>
+                  <span class="prop-escrow"
+                    ><i class="ti ti-lock"></i> Escrow</span
+                  >
+                </div>
+                <div class="prop-features">
+                  <span class="prop-feat">1 Bed</span
+                  ><span class="prop-feat">1 Bath</span
+                  ><span class="prop-feat">Water</span>
+                </div>
+                <div class="trust-score">
+                  <div
+                    style="
+                      font-size: 10px;
+                      font-weight: 700;
+                      color: var(--teal);
+                    "
+                  >
+                    94/100
+                  </div>
+                  <div class="trust-bar">
+                    <div
+                      class="trust-fill"
+                      style="width: 94%; background: var(--teal2)"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="prop-card" onclick="navTo('t-listing')">
+              <div
+                class="prop-img"
+                style="background: linear-gradient(135deg, #854f0b, #ba7517)"
+              >
+                <i
+                  class="ti ti-door"
+                  style="font-size: 56px; color: rgba(255, 255, 255, 0.18)"
+                ></i>
+                <div class="prop-badges">
+                  <span class="badge badge-white"
+                    ><i class="ti ti-shield-check"></i> Verified</span
+                  >
+                </div>
+                <div class="prop-save">
+                  <button
+                    class="prop-save-btn"
+                    onclick="
+                      event.stopPropagation();
+                      toggleSave(this);
+                    "
+                  >
+                    <i
+                      class="ti ti-heart"
+                      style="font-size: 16px; color: #fff"
+                    ></i>
+                  </button>
+                </div>
+              </div>
+              <div class="prop-body">
+                <div class="prop-title">3-Bedroom Duplex</div>
+                <div class="prop-loc">
+                  <i class="ti ti-map-pin"></i> Ajah, Lagos
+                </div>
+                <div class="prop-meta">
+                  <div class="prop-price">₦3.2M <span>/ year</span></div>
+                  <span class="prop-escrow"
+                    ><i class="ti ti-lock"></i> Escrow</span
+                  >
+                </div>
+                <div class="prop-features">
+                  <span class="prop-feat">3 Beds</span
+                  ><span class="prop-feat">2 Baths</span
+                  ><span class="prop-feat">Parking</span
+                  ><span class="prop-feat">Gen</span>
+                </div>
+                <div class="trust-score">
+                  <div
+                    style="
+                      font-size: 10px;
+                      font-weight: 700;
+                      color: var(--teal);
+                    "
+                  >
+                    91/100
+                  </div>
+                  <div class="trust-bar">
+                    <div
+                      class="trust-fill"
+                      style="width: 91%; background: var(--teal2)"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── TENANT: LISTING DETAIL ─── -->
+      <div class="page" id="page-t-listing">
+        <div class="container section-sm">
+          <button class="back-btn" onclick="navTo('home')">
+            <i class="ti ti-arrow-left"></i> Back to listings
+          </button>
+          <div class="detail-layout">
+            <div>
+              <div
+                class="detail-img"
+                style="background: linear-gradient(135deg, #0a5c48, #12876a)"
+              >
+                <i
+                  class="ti ti-building"
+                  style="font-size: 80px; color: rgba(255, 255, 255, 0.2)"
+                ></i>
+                <div class="detail-img-dots">
+                  <div class="detail-img-dot" style="background: #fff"></div>
+                  <div
+                    class="detail-img-dot"
+                    style="background: rgba(255, 255, 255, 0.4)"
+                  ></div>
+                  <div
+                    class="detail-img-dot"
+                    style="background: rgba(255, 255, 255, 0.4)"
+                  ></div>
+                </div>
+              </div>
+              <div style="margin-top: 20px">
+                <div class="flex-between" style="margin-bottom: 8px">
+                  <h1 class="t-h1">Modern 2-Bedroom Flat</h1>
+                  <button
+                    class="btn btn-ghost btn-sm"
+                    onclick="toggleSaveBtn(this)"
+                  >
+                    <i class="ti ti-heart"></i> Save
+                  </button>
+                </div>
+                <div
+                  class="t-body"
+                  style="
+                    color: var(--ink3);
+                    margin-bottom: 16px;
+                    display: flex;
+                    align-items: center;
+                    gap: 6px;
+                  "
+                >
+                  <i class="ti ti-map-pin"></i> Lekki Phase 1, Lagos  · 
+                  <span style="color: var(--teal); font-weight: 600"
+                    >Unit LEK-B-2-07</span
+                  >
+                </div>
+                <div class="card card-teal" style="margin-bottom: 16px">
+                  <div
+                    style="
+                      font-family: &quot;Fraunces&quot;, serif;
+                      font-size: 15px;
+                      color: var(--teal5);
+                      margin-bottom: 5px;
+                    "
+                  >
+                    <i class="ti ti-shield-check"></i> AI Trust Score: 98/100 —
+                    Verified
+                  </div>
+                  <div class="score-bar-wrap">
+                    <div
+                      class="score-bar-fill"
+                      style="width: 98%; background: var(--teal2)"
+                    ></div>
+                  </div>
+                  <div
+                    class="t-sm"
+                    style="color: var(--teal5); margin-top: 8px; opacity: 0.8"
+                  >
+                    No duplicate listings · NIN confirmed · No fraud flags ·
+                    Docs verified
+                  </div>
+                </div>
+                <div class="pills" style="margin-top: 0">
+                  <span class="pill on-t">2 Beds</span>
+                  <span class="pill on-t">1 Bath</span>
+                  <span class="pill on-t">Water</span>
+                  <span class="pill on-t">Security</span>
+                  <span class="pill on-t">Parking</span>
+                  <span class="pill on-t">24hr Power</span>
+                </div>
+                <div class="card card-amber" style="margin-top: 4px">
+                  <div
+                    style="display: flex; align-items: flex-start; gap: 12px"
+                  >
+                    <i
+                      class="ti ti-user-check"
+                      style="
+                        font-size: 20px;
+                        color: var(--amber);
+                        flex-shrink: 0;
+                        margin-top: 2px;
+                      "
+                    ></i>
+                    <div class="t-sm" style="color: #5a3600">
+                      Landlord Verified Landlord · NIN + property docs confirmed
+                      · 4.9★ rating from 23 tenants
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- STICKY SIDEBAR -->
+            <div>
+              <div class="card sticky-card">
+                <div
+                  style="
+                    font-family: &quot;Fraunces&quot;, serif;
+                    font-size: 28px;
+                    color: var(--teal);
+                    margin-bottom: 4px;
+                  "
+                >
+                  ₦1.8M<span
+                    style="
+                      font-size: 14px;
+                      color: var(--ink3);
+                      font-family: &quot;Sora&quot;, sans-serif;
+                      font-weight: 400;
+                    "
+                  >
+                    / year</span
+                  >
+                </div>
+                <div
+                  class="t-sm"
+                  style="color: var(--ink3); margin-bottom: 16px"
+                >
+                  + ₦300k caution deposit
+                </div>
+                <div class="card card-teal" style="margin-bottom: 16px">
+                  <div
+                    style="
+                      font-family: &quot;Fraunces&quot;, serif;
+                      font-size: 14px;
+                      color: var(--teal5);
+                      margin-bottom: 5px;
+                    "
+                  >
+                    <i class="ti ti-lock"></i> Escrow protection
+                  </div>
+                  <div class="t-sm" style="color: var(--teal5)">
+                    Landlord only gets paid after you physically receive the
+                    keys. Zero fraud risk.
+                  </div>
+                </div>
+                <button
+                  class="btn btn-teal btn-full"
+                  style="margin-bottom: 10px"
+                  onclick="navTo('t-pay')"
+                >
+                  Apply & Pay into Escrow
+                </button>
+                <button
+                  class="btn btn-outline-t btn-full"
+                  onclick="navTo('t-chat')"
+                >
+                  <i class="ti ti-message"></i> Chat with landlord
+                </button>
+                <div class="divider"></div>
+                <div class="escrow-step">
+                  <div class="escrow-num t-n">1</div>
+                  <div>
+                    <div class="escrow-step-title">Pay into escrow</div>
+                    <div class="escrow-step-desc">
+                      Funds locked, neither party can access
+                    </div>
+                  </div>
+                </div>
+                <div class="escrow-step">
+                  <div class="escrow-num t-n">2</div>
+                  <div>
+                    <div class="escrow-step-title">Key handover</div>
+                    <div class="escrow-step-desc">
+                      Meet landlord, receive physical keys
+                    </div>
+                  </div>
+                </div>
+                <div class="escrow-step" style="margin-bottom: 0">
+                  <div class="escrow-num t-n">3</div>
+                  <div>
+                    <div class="escrow-step-title">Release funds</div>
+                    <div class="escrow-step-desc">
+                      Tap confirm — money goes to landlord
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── TENANT: PAY ─── -->
+      <div class="page" id="page-t-pay">
+        <div class="container section-sm" style="max-width: 640px">
+          <button class="back-btn" onclick="navTo('t-listing')">
+            <i class="ti ti-arrow-left"></i> Back
+          </button>
+          <h1 class="t-h1" style="margin-bottom: 6px">Escrow payment</h1>
+          <p class="t-body" style="color: var(--ink3); margin-bottom: 24px">
+            Your funds are held securely — released only after you confirm key
+            receipt.
+          </p>
+          <div class="card card-teal" style="margin-bottom: 20px">
+            <div
+              style="
+                font-family: &quot;Fraunces&quot;, serif;
+                font-size: 15px;
+                color: var(--teal5);
+                margin-bottom: 5px;
+              "
+            >
+              <i class="ti ti-lock"></i> How escrow works
+            </div>
+            <div class="t-sm" style="color: var(--teal5)">
+              Your money is locked in a secure escrow account. You release it
+              yourself once keys are in your hand. If anything goes wrong,
+              you're fully protected.
+            </div>
+          </div>
+          <div class="card" style="margin-bottom: 20px">
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 10px;
+              "
+            >
+              <span class="t-body" style="color: var(--ink3)"
+                >Rent (1 year)</span
+              ><span class="t-body" style="font-weight: 600">₦1,800,000</span>
+            </div>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 10px;
+              "
+            >
+              <span class="t-body" style="color: var(--ink3)"
+                >Caution deposit</span
+              ><span class="t-body" style="font-weight: 600">₦300,000</span>
+            </div>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 10px;
+              "
+            >
+              <span class="t-body" style="color: var(--ink3)"
+                >RentHopa fee (2%)</span
+              ><span class="t-body" style="font-weight: 600">₦36,000</span>
+            </div>
+            <div class="divider"></div>
+            <div style="display: flex; justify-content: space-between">
+              <span class="t-h3">Total</span
+              ><span class="t-h3" style="color: var(--teal)">₦2,136,000</span>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 10px">
+            <button
+              class="btn btn-teal btn-full btn-lg"
+              onclick="navTo('t-confirm')"
+            >
+              Pay ₦2,136,000 to Escrow
+            </button>
+            <button
+              class="btn btn-outline-t btn-full"
+              onclick="navTo('t-listing')"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── TENANT: CONFIRMED ─── -->
+      <div class="page" id="page-t-confirm">
+        <div class="container" style="max-width: 560px">
+          <div class="status-box">
+            <div class="status-icon" style="background: var(--teal3)">
+              <i class="ti ti-lock" style="color: var(--teal)"></i>
+            </div>
+            <h1 class="t-h1" style="margin-bottom: 10px">Payment secured!</h1>
+            <p class="t-body" style="color: var(--ink3); margin-bottom: 24px">
+              ₦2,136,000 locked in escrow. Landlord notified. AI support bot is
+              active for your booking.
+            </p>
+            <div class="card" style="text-align: left; margin-bottom: 20px">
+              <div class="table-row">
+                <div class="table-row-left">Status</div>
+                <span class="badge badge-amber">⏳ Awaiting keys</span>
+              </div>
+              <div class="table-row">
+                <div class="table-row-left">Reference</div>
+                <div class="table-row-right">RH-2024-8812</div>
+              </div>
+              <div class="table-row">
+                <div class="table-row-left">Support bot</div>
+                <span class="badge badge-teal">Active</span>
+              </div>
+              <div class="table-row" style="border: none">
+                <div class="table-row-left">Property</div>
+                <div class="table-row-right">Lekki Ph1 · Unit LEK-B-2-07</div>
+              </div>
+            </div>
+            <button
+              class="btn btn-amber btn-full btn-lg"
+              onclick="navTo('t-handover')"
+            >
+              Keys received — Release funds
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── TENANT: HANDOVER ─── -->
+      <div class="page" id="page-t-handover">
+        <div class="container" style="max-width: 560px">
+          <div class="status-box">
+            <div class="status-icon" style="background: var(--teal)">
+              <i class="ti ti-check" style="color: #fff"></i>
+            </div>
+            <h1 class="t-h1" style="margin-bottom: 10px">Welcome home!</h1>
+            <p class="t-body" style="color: var(--ink3); margin-bottom: 28px">
+              ₦1,800,000 released to landlord. Your lease is now active.
+              Receipts sent to both parties.
+            </p>
+            <button class="btn btn-teal btn-lg" onclick="navTo('t-lease')">
+              View my lease →
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── TENANT: SAVED ─── -->
+      <div class="page" id="page-t-saved">
+        <div class="container section">
+          <h1 class="t-h1" style="margin-bottom: 24px">Saved listings</h1>
+          <div class="listings-grid">
+            <div class="prop-card" onclick="navTo('t-listing')">
+              <div
+                class="prop-img"
+                style="background: linear-gradient(135deg, #0a5c48, #12876a)"
+              >
+                <i
+                  class="ti ti-building"
+                  style="font-size: 50px; color: rgba(255, 255, 255, 0.18)"
+                ></i>
+                <div class="prop-badges">
+                  <span class="badge badge-white"
+                    ><i class="ti ti-heart-filled" style="color: #ff4d6d"></i>
+                    Saved</span
+                  >
+                </div>
+              </div>
+              <div class="prop-body">
+                <div class="prop-title">Modern 2-Bedroom Flat</div>
+                <div class="prop-loc">
+                  <i class="ti ti-map-pin"></i> Lekki Phase 1
+                </div>
+                <div class="prop-meta">
+                  <div class="prop-price">₦1.8M <span>/ year</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="prop-card" onclick="navTo('t-listing')">
+              <div
+                class="prop-img"
+                style="background: linear-gradient(135deg, #534ab7, #7f77dd)"
+              >
+                <i
+                  class="ti ti-home"
+                  style="font-size: 50px; color: rgba(255, 255, 255, 0.18)"
+                ></i>
+                <div class="prop-badges">
+                  <span class="badge badge-white"
+                    ><i class="ti ti-heart-filled" style="color: #ff4d6d"></i>
+                    Saved</span
+                  >
+                </div>
+              </div>
+              <div class="prop-body">
+                <div class="prop-title">Cozy Self-Contain Studio</div>
+                <div class="prop-loc"><i class="ti ti-map-pin"></i> Yaba</div>
+                <div class="prop-meta">
+                  <div class="prop-price">₦650k <span>/ year</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── TENANT: LEASE ─── -->
+      <div class="page" id="page-t-lease">
+        <div class="container section" style="max-width: 760px">
+          <h1 class="t-h1" style="margin-bottom: 24px">My lease</h1>
+          <div class="card" style="margin-bottom: 20px">
+            <div class="flex-between" style="margin-bottom: 14px">
+              <div>
+                <h2 class="t-h2">Lekki Phase 1 Flat</h2>
+                <div class="t-sm" style="color: var(--ink3); margin-top: 3px">
+                  Unit LEK-B-2-07 · Ref RH-2024-8812
+                </div>
+              </div>
+              <span class="badge badge-teal">Active</span>
+            </div>
+            <div class="grid-2" style="margin-bottom: 12px">
+              <div>
+                <div
+                  class="t-xs"
+                  style="color: var(--ink3); margin-bottom: 3px"
+                >
+                  Lease start
+                </div>
+                <div class="t-body" style="font-weight: 600">Jan 15, 2025</div>
+              </div>
+              <div>
+                <div
+                  class="t-xs"
+                  style="color: var(--ink3); margin-bottom: 3px"
+                >
+                  Lease end
+                </div>
+                <div class="t-body" style="font-weight: 600">Jan 14, 2026</div>
+              </div>
+            </div>
+            <div class="t-sm" style="color: var(--ink3); margin-bottom: 6px">
+              Lease progress — 7 months remaining
+            </div>
+            <div class="lease-progress">
+              <div class="lease-fill" style="width: 42%"></div>
+            </div>
+          </div>
+          <div class="grid-2">
+            <div class="card card-teal">
+              <div
+                style="
+                  font-family: &quot;Fraunces&quot;, serif;
+                  font-size: 14px;
+                  color: var(--teal5);
+                  margin-bottom: 8px;
+                "
+              >
+                <i class="ti ti-lock"></i> Escrow status
+              </div>
+              <div class="table-row" style="border: none; padding: 6px 0">
+                <div class="t-sm" style="color: var(--ink)">Total paid</div>
+                <div
+                  class="t-body"
+                  style="font-weight: 700; color: var(--teal)"
+                >
+                  ₦2,136,000
+                </div>
+              </div>
+              <div class="table-row" style="border: none; padding: 6px 0">
+                <div class="t-sm" style="color: var(--ink)">Released</div>
+                <div class="t-sm" style="font-weight: 600">₦1,800,000</div>
+              </div>
+              <div class="table-row" style="border: none; padding: 6px 0">
+                <div class="t-sm" style="color: var(--ink)">Caution held</div>
+                <div class="t-sm" style="font-weight: 600; color: var(--amber)">
+                  ₦300,000
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div
+                style="
+                  font-family: &quot;Fraunces&quot;, serif;
+                  font-size: 14px;
+                  color: var(--ink);
+                  margin-bottom: 8px;
+                "
+              >
+                <i class="ti ti-tool"></i> Report issue
+              </div>
+              <div
+                class="maint-card"
+                style="padding: 10px; cursor: pointer"
+                onclick="showToast('Maintenance request submitted')"
+              >
+                <div class="maint-icon" style="background: var(--red2)">
+                  <i class="ti ti-droplet" style="color: var(--red)"></i>
+                </div>
+                <div>
+                  <div class="t-sm" style="font-weight: 600">Plumbing</div>
+                  <div style="font-size: 10px; color: var(--ink3)">
+                    Submit a request
+                  </div>
+                </div>
+              </div>
+              <div
+                class="maint-card"
+                style="padding: 10px; cursor: pointer"
+                onclick="showToast('Maintenance request submitted')"
+              >
+                <div class="maint-icon" style="background: var(--amber2)">
+                  <i class="ti ti-bolt" style="color: var(--amber)"></i>
+                </div>
+                <div>
+                  <div class="t-sm" style="font-weight: 600">Electrical</div>
+                  <div style="font-size: 10px; color: var(--ink3)">
+                    Submit a request
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── TENANT: CHAT ─── -->
+      <div class="page" id="page-t-chat">
+        <div class="container section" style="max-width: 680px">
+          <h1 class="t-h1" style="margin-bottom: 6px">AI support</h1>
+          <p class="t-body" style="color: var(--ink3); margin-bottom: 20px">
+            Ask anything about your rental, escrow, landlord, or Nigerian tenant
+            rights.
+          </p>
+          <div class="card">
+            <div class="chat-container">
+              <div class="chat-messages" id="chat-msgs">
+                <div class="bubble bot">
+                  Hi! I'm your RentHopa assistant. Ask me about listings, escrow
+                  payments, your rights as a tenant, or anything else. 🏠
+                </div>
+              </div>
+              <div class="chat-input-row">
+                <input
+                  class="chat-input"
+                  id="chat-in"
+                  placeholder="Ask anything…"
+                  onkeydown="if (event.key === 'Enter') sendChat();"
+                />
+                <button class="chat-send t-cs" onclick="sendChat()">
+                  <i
+                    class="ti ti-send"
+                    style="font-size: 18px; color: #fff"
+                  ></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── TENANT: PROFILE ─── -->
+      <div class="page" id="page-t-profile">
+        <div class="container section" style="max-width: 720px">
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 20px;
+              margin-bottom: 28px;
+            "
+          >
+            <div class="profile-av t-av">UG</div>
+            <div>
+              <h1 class="t-h1" style="margin-bottom: 4px">
+                Uzoigwe Greatmiracle
+              </h1>
+              <div class="t-sm" style="color: var(--ink3); margin-bottom: 8px">
+                +234 703 163 5484 · Lagos, Nigeria
+              </div>
+              <div style="display: flex; gap: 7px">
+                <span class="badge badge-teal"
+                  ><i class="ti ti-shield-check"></i> Verified</span
+                ><span class="badge badge-teal">Tenant</span>
+              </div>
+            </div>
+          </div>
+          <div class="grid-2" style="margin-bottom: 20px">
+            <div
+              class="card"
+              style="cursor: pointer"
+              onclick="navTo('t-lease')"
+            >
+              <div class="t-xs" style="color: var(--ink3); margin-bottom: 8px">
+                Active lease
+              </div>
+              <div class="t-h2" style="color: var(--teal)">1</div>
+              <div class="t-sm" style="color: var(--ink3); margin-top: 4px">
+                Lekki Phase 1 →
+              </div>
+            </div>
+            <div class="card">
+              <div class="t-xs" style="color: var(--ink3); margin-bottom: 8px">
+                Escrow wallet
+              </div>
+              <div class="t-h2" style="color: var(--teal)">₦2.1M</div>
+              <div class="t-sm" style="color: var(--ink3); margin-top: 4px">
+                1 transaction
+              </div>
+            </div>
+          </div>
+          <div class="card" style="margin-bottom: 16px">
+            <div class="table-row" onclick="navTo('t-lease')">
+              <div class="table-row-left">
+                <i class="ti ti-file-text" style="color: var(--ink3)"></i> My
+                lease
+              </div>
+              <div class="table-row-right">
+                Active <i class="ti ti-chevron-right"></i>
+              </div>
+            </div>
+            <div class="table-row">
+              <div class="table-row-left">
+                <i class="ti ti-id" style="color: var(--ink3)"></i> Identity
+              </div>
+              <span class="badge badge-teal">Verified</span>
+            </div>
+            <div class="table-row" onclick="navTo('t-chat')">
+              <div class="table-row-left">
+                <i class="ti ti-message" style="color: var(--ink3)"></i> AI
+                support
+              </div>
+              <div class="table-row-right">
+                <i class="ti ti-chevron-right"></i>
+              </div>
+            </div>
+            <div class="table-row" style="border: none">
+              <div class="table-row-left">
+                <i class="ti ti-bell" style="color: var(--ink3)"></i>
+                Notifications
+              </div>
+              <div class="table-row-right">
+                <i class="ti ti-chevron-right"></i>
+              </div>
+            </div>
+          </div>
+          <!-- BECOME LANDLORD CTA -->
+          <div class="ll-cta" onclick="navTo('ll-onboard')">
+            <div
+              style="
+                width: 52px;
+                height: 52px;
+                border-radius: 16px;
+                background: var(--land3);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+              "
+            >
+              <i
+                class="ti ti-building-estate"
+                style="font-size: 26px; color: var(--land)"
+              ></i>
+            </div>
+            <div style="flex: 1">
+              <div
+                style="
+                  font-family: &quot;Fraunces&quot;, serif;
+                  font-size: 17px;
+                  color: var(--ink);
+                  margin-bottom: 3px;
+                "
+              >
+                Become a Landlord
+              </div>
+              <div class="t-sm" style="color: var(--ink3)">
+                List properties & earn rental income under your existing
+                account.
+              </div>
+            </div>
+            <i
+              class="ti ti-arrow-right"
+              style="font-size: 20px; color: var(--land); flex-shrink: 0"
+            ></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── LANDLORD ONBOARDING ─── -->
+      <div class="page" id="page-ll-onboard">
+        <div class="container section" style="max-width: 640px">
+          <button class="back-btn" onclick="navTo('t-profile')">
+            <i class="ti ti-arrow-left"></i> Back
+          </button>
+          <div style="text-align: center; margin-bottom: 28px">
+            <div
+              style="
+                width: 80px;
+                height: 80px;
+                border-radius: 24px;
+                background: var(--land3);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto 16px;
+              "
+            >
+              <i
+                class="ti ti-building-estate"
+                style="font-size: 40px; color: var(--land)"
+              ></i>
+            </div>
+            <h1 class="t-h1" style="margin-bottom: 8px">Become a Landlord</h1>
+            <p class="t-body" style="color: var(--ink3)">
+              One-time verification required. List properties and earn under
+              your existing account — no separate login needed.
+            </p>
+          </div>
+          <div
+            class="vstep done"
+            onclick="showToast('Government ID already verified')"
+          >
+            <div class="vstep-icon" style="background: var(--teal3)">
+              <i class="ti ti-id" style="color: var(--teal)"></i>
+            </div>
+            <div style="flex: 1">
+              <div class="vstep-title">Government-issued ID</div>
+              <div class="vstep-desc">
+                NIN, International Passport, or Driver's Licence
+              </div>
+            </div>
+            <i
+              class="ti ti-circle-check"
+              style="color: var(--teal); font-size: 22px; flex-shrink: 0"
+            ></i>
+          </div>
+          <div class="vstep current" onclick="navTo('ll-verify')">
+            <div class="vstep-icon" style="background: var(--land3)">
+              <i class="ti ti-camera-selfie" style="color: var(--land)"></i>
+            </div>
+            <div style="flex: 1">
+              <div class="vstep-title">Selfie / Face verification</div>
+              <div class="vstep-desc">
+                Live face match against your ID — prevents fake accounts
+              </div>
+            </div>
+            <span class="chip chip-pending">Pending →</span>
+          </div>
+          <div
+            class="vstep"
+            onclick="showToast('Complete selfie verification first')"
+          >
+            <div class="vstep-icon" style="background: var(--surf)">
+              <i class="ti ti-phone" style="color: var(--ink3)"></i>
+            </div>
+            <div style="flex: 1">
+              <div class="vstep-title">Phone verification</div>
+              <div class="vstep-desc">OTP sent to your registered number</div>
+            </div>
+            <span class="chip chip-locked">Locked</span>
+          </div>
+          <div
+            class="vstep"
+            onclick="showToast('Complete previous steps first')"
+          >
+            <div class="vstep-icon" style="background: var(--surf)">
+              <i class="ti ti-building-bank" style="color: var(--ink3)"></i>
+            </div>
+            <div style="flex: 1">
+              <div class="vstep-title">Bank account verification</div>
+              <div class="vstep-desc">
+                BVN-linked account for secure payouts
+              </div>
+            </div>
+            <span class="chip chip-locked">Locked</span>
+          </div>
+          <div
+            class="vstep"
+            onclick="showToast('Complete previous steps first')"
+          >
+            <div class="vstep-icon" style="background: var(--surf)">
+              <i class="ti ti-home-check" style="color: var(--ink3)"></i>
+            </div>
+            <div style="flex: 1">
+              <div class="vstep-title">Property ownership proof</div>
+              <div class="vstep-desc">
+                C of O, survey plan, or letter of authority
+              </div>
+            </div>
+            <span class="chip chip-locked">Locked</span>
+          </div>
+          <div
+            class="vstep"
+            onclick="showToast('Optional — complete other steps first')"
+          >
+            <div class="vstep-icon" style="background: var(--surf)">
+              <i class="ti ti-certificate" style="color: var(--ink3)"></i>
+            </div>
+            <div style="flex: 1">
+              <div class="vstep-title">CAC / Business registration</div>
+              <div class="vstep-desc">
+                Optional — for professional property managers
+              </div>
+            </div>
+            <span class="chip chip-draft">Optional</span>
+          </div>
+          <div
+            style="
+              margin: 20px 0 10px;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            "
+          >
+            <span class="t-sm" style="color: var(--ink3); font-weight: 600"
+              >Overall progress</span
+            >
+            <span class="t-sm" style="color: var(--land); font-weight: 700"
+              >1 of 5 complete</span
+            >
+          </div>
+          <div class="prog-bar-wrap" style="margin-bottom: 20px">
+            <div class="prog-bar-fill" style="width: 20%"></div>
+          </div>
+          <button
+            class="btn btn-land btn-full btn-lg"
+            onclick="navTo('ll-verify')"
+          >
+            Continue verification
+          </button>
+        </div>
+      </div>
+
+      <!-- ─── LANDLORD VERIFY ─── -->
+      <div class="page" id="page-ll-verify">
+        <div class="container section" style="max-width: 560px">
+          <button class="back-btn lm" onclick="navTo('ll-onboard')">
+            <i class="ti ti-arrow-left"></i> Back
+          </button>
+          <h1 class="t-h1" style="margin-bottom: 8px">Face verification</h1>
+          <p class="t-body" style="color: var(--ink3); margin-bottom: 20px">
+            We'll match your face against your uploaded ID in real time. This
+            prevents fake landlord accounts on RentHopa.
+          </p>
+          <div class="selfie-cam">
+            <div class="cam-overlay"></div>
+            <div class="cam-border"></div>
+            <i
+              class="ti ti-user-circle"
+              style="
+                font-size: 72px;
+                color: rgba(255, 255, 255, 0.25);
+                position: relative;
+                z-index: 1;
+              "
+            ></i>
+            <div
+              class="t-sm"
+              style="
+                color: rgba(255, 255, 255, 0.5);
+                margin-top: 8px;
+                position: relative;
+                z-index: 1;
+              "
+            >
+              Position your face in the frame
+            </div>
+          </div>
+          <div class="card card-land" style="margin-bottom: 16px">
+            <div class="t-sm" style="color: var(--land)">
+              <i class="ti ti-shield"></i> Your biometric data is encrypted and
+              never shared. Used only for identity verification.
+            </div>
+          </div>
+          <div
+            class="ai-box show"
+            id="selfie-result"
+            style="
+              background: var(--teal3);
+              border-color: rgba(10, 92, 72, 0.15);
+            "
+          >
+            <div class="ai-box-label" style="color: var(--teal5)">
+              <i class="ti ti-shield-check"></i> Verification result
+            </div>
+            <div
+              class="ai-box-text"
+              id="selfie-text"
+              style="color: var(--teal5); font-style: italic"
+            >
+              Tap the button to begin face verification.
+            </div>
+          </div>
+          <button
+            class="btn btn-land btn-full btn-lg"
+            id="selfie-btn"
+            onclick="doSelfieVerify()"
+            style="margin-top: 16px"
+          >
+            Take selfie & verify
+          </button>
+        </div>
+      </div>
+
+      <!-- ─── LANDLORD PENDING ─── -->
+      <div class="page" id="page-ll-pending">
+        <div class="container" style="max-width: 560px">
+          <div class="status-box">
+            <div class="status-icon" style="background: var(--land3)">
+              <i class="ti ti-clock" style="color: var(--land)"></i>
+            </div>
+            <h1 class="t-h1" style="margin-bottom: 10px">Under review</h1>
+            <p class="t-body" style="color: var(--ink3); margin-bottom: 24px">
+              Your documents are being reviewed by our team. You'll receive a
+              notification within 24–48 hours.
+            </p>
+            <div class="card" style="text-align: left; margin-bottom: 20px">
+              <div class="table-row">
+                <div class="table-row-left">Government ID</div>
+                <span class="badge badge-teal">Verified</span>
+              </div>
+              <div class="table-row">
+                <div class="table-row-left">Face match</div>
+                <span class="badge badge-teal">Verified</span>
+              </div>
+              <div class="table-row" style="border: none">
+                <div class="table-row-left">Admin review</div>
+                <span class="badge badge-amber">In progress</span>
+              </div>
+            </div>
+            <button class="btn btn-land btn-lg" onclick="approveLandlord()">
+              Simulate approval ↗
+            </button>
+            <div class="t-sm" style="color: var(--ink3); margin-top: 10px">
+              (Demo only — shows the approval flow)
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── LANDLORD: DASHBOARD ─── -->
+      <div class="page" id="page-l-dash">
+        <div class="hero l-hero">
+          <div class="hero-inner">
+            <div class="hero-grid">
+              <div>
+                <div class="hero-eyebrow">Landlord dashboard</div>
+                <h1 class="hero-title">
+                  Your rental<br /><em
+                    style="font-style: italic; font-weight: 300"
+                    >empire.</em
+                  >
+                </h1>
+                <p class="hero-sub">
+                  Manage properties, approve tenants, track income — all in one
+                  seamless dashboard.
+                </p>
+                <div class="hero-tags">
+                  <span class="hero-tag"
+                    ><i class="ti ti-building-estate"></i> 3 properties</span
+                  >
+                  <span class="hero-tag"
+                    ><i class="ti ti-users"></i> 7 tenants</span
+                  >
+                </div>
+              </div>
+              <div class="hero-visual">
+                <div
+                  style="
+                    background: rgba(255, 255, 255, 0.1);
+                    border-radius: var(--r-lg);
+                    padding: 16px;
+                    margin-bottom: 12px;
+                  "
+                >
+                  <div
+                    class="t-xs"
+                    style="color: rgba(255, 255, 255, 0.5); margin-bottom: 8px"
+                  >
+                    Monthly income
+                  </div>
+                  <div
+                    style="
+                      font-family: &quot;Fraunces&quot;, serif;
+                      font-size: 32px;
+                      color: #fff;
+                      font-weight: 700;
+                    "
+                  >
+                    ₦5.4M
+                  </div>
+                  <div
+                    class="t-sm"
+                    style="color: rgba(255, 255, 255, 0.5); margin-top: 4px"
+                  >
+                    +12% vs last month
+                  </div>
+                </div>
+                <div class="hero-stat-row">
+                  <div class="hero-stat">
+                    <div class="hero-stat-n">86%</div>
+                    <div class="hero-stat-l">Occupancy</div>
+                  </div>
+                  <div class="hero-stat">
+                    <div class="hero-stat-n">7</div>
+                    <div class="hero-stat-l">Tenants</div>
+                  </div>
+                  <div class="hero-stat">
+                    <div class="hero-stat-n">3</div>
+                    <div class="hero-stat-l">Pending</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container section-sm">
+          <div class="metric-grid">
+            <div class="metric-card">
+              <div class="metric-n">₦16.8M</div>
+              <div class="metric-l">Total earned (2024)</div>
+              <div class="metric-change">↑ 23% YoY</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-n">₦5.4M</div>
+              <div class="metric-l">This month</div>
+              <div class="metric-change">↑ 12% vs last</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-n t-n">86%</div>
+              <div class="metric-l">Occupancy rate</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-n" style="color: var(--amber)">3</div>
+              <div class="metric-l">New applications</div>
+            </div>
+          </div>
+          <div class="sec-header">
+            <h2 class="sec-title">My listings</h2>
+            <button class="btn btn-outline-l btn-sm" onclick="navTo('l-post')">
+              <i class="ti ti-plus"></i> Add listing
+            </button>
+          </div>
+          <div class="listings-grid">
+            <div class="prop-card" onclick="navTo('l-listing-detail')">
+              <div
+                class="prop-img"
+                style="background: linear-gradient(135deg, #1e1245, #3a2580)"
+              >
+                <i
+                  class="ti ti-building"
+                  style="font-size: 50px; color: rgba(255, 255, 255, 0.18)"
+                ></i>
+                <div class="prop-badges">
+                  <span class="chip chip-live">Live</span>
+                </div>
+              </div>
+              <div class="prop-body">
+                <div class="prop-title">3-Bedroom Duplex</div>
+                <div class="prop-loc">
+                  <i class="ti ti-map-pin"></i> Ikeja GRA, Lagos
+                </div>
+                <div class="prop-meta">
+                  <div class="prop-price lm">₦3.8M <span>/ year</span></div>
+                  <span class="badge badge-amber">2 apps</span>
+                </div>
+              </div>
+            </div>
+            <div class="prop-card" onclick="navTo('l-listing-detail')">
+              <div
+                class="prop-img"
+                style="background: linear-gradient(135deg, #3a2580, #534ab7)"
+              >
+                <i
+                  class="ti ti-home"
+                  style="font-size: 50px; color: rgba(255, 255, 255, 0.18)"
+                ></i>
+                <div class="prop-badges">
+                  <span class="chip chip-live">Live</span>
+                </div>
+              </div>
+              <div class="prop-body">
+                <div class="prop-title">2-Bedroom Flat</div>
+                <div class="prop-loc">
+                  <i class="ti ti-map-pin"></i> Lekki Phase 1
+                </div>
+                <div class="prop-meta">
+                  <div class="prop-price lm">₦2.2M <span>/ year</span></div>
+                  <span class="badge badge-teal">Occupied</span>
+                </div>
+              </div>
+            </div>
+            <div class="prop-card" onclick="navTo('l-listing-detail')">
+              <div
+                class="prop-img"
+                style="background: linear-gradient(135deg, #0d0820, #1e1245)"
+              >
+                <i
+                  class="ti ti-door"
+                  style="font-size: 50px; color: rgba(255, 255, 255, 0.18)"
+                ></i>
+                <div class="prop-badges">
+                  <span class="chip chip-draft">Draft</span>
+                </div>
+              </div>
+              <div class="prop-body">
+                <div class="prop-title">Studio Self-Contain</div>
+                <div class="prop-loc">
+                  <i class="ti ti-map-pin"></i> Yaba, Lagos
+                </div>
+                <div class="prop-meta">
+                  <div class="prop-price lm">₦650k <span>/ year</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── LANDLORD: LISTING DETAIL ─── -->
+      <div class="page" id="page-l-listing-detail">
+        <div class="container section-sm" style="max-width: 900px">
+          <button class="back-btn lm" onclick="navTo('l-dash')">
+            <i class="ti ti-arrow-left"></i> Dashboard
+          </button>
+          <div class="detail-layout">
+            <div>
+              <div
+                class="detail-img"
+                style="background: linear-gradient(135deg, #1e1245, #3a2580)"
+              >
+                <i
+                  class="ti ti-building"
+                  style="font-size: 80px; color: rgba(255, 255, 255, 0.18)"
+                ></i>
+              </div>
+              <div style="margin-top: 20px">
+                <div class="flex-between" style="margin-bottom: 12px">
+                  <h1 class="t-h1">3-Bedroom Duplex</h1>
+                  <span class="chip chip-live">Live</span>
+                </div>
+                <div
+                  class="t-body"
+                  style="
+                    color: var(--ink3);
+                    margin-bottom: 18px;
+                    display: flex;
+                    align-items: center;
+                    gap: 6px;
+                  "
+                >
+                  <i class="ti ti-map-pin"></i> Ikeja GRA, Lagos
+                </div>
+                <div class="sec-header">
+                  <h2 class="t-h3">Applications (2)</h2>
+                </div>
+                <div class="app-row">
+                  <div
+                    class="app-av"
+                    style="
+                      background: linear-gradient(135deg, #0a5c48, #12876a);
+                    "
+                  >
+                    AO
+                  </div>
+                  <div style="flex: 1">
+                    <div class="t-body" style="font-weight: 700">
+                      Adaeze Okonkwo
+                    </div>
+                    <div class="t-sm" style="color: var(--ink3)">
+                      Verified · Score 94/100 · ₦3.8M in escrow
+                    </div>
+                  </div>
+                  <div class="app-actions">
+                    <button
+                      class="btn btn-teal btn-sm"
+                      onclick="showToast('Application approved!')"
+                    >
+                      <i class="ti ti-check"></i> Approve
+                    </button>
+                    <button
+                      class="btn btn-ghost btn-sm"
+                      style="color: var(--red)"
+                      onclick="showToast('Application declined')"
+                    >
+                      <i class="ti ti-x"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="app-row">
+                  <div
+                    class="app-av"
+                    style="
+                      background: linear-gradient(135deg, #534ab7, #7f77dd);
+                    "
+                  >
+                    BM
+                  </div>
+                  <div style="flex: 1">
+                    <div class="t-body" style="font-weight: 700">
+                      Babatunde Musa
+                    </div>
+                    <div class="t-sm" style="color: var(--ink3)">
+                      Verified · Score 88/100 · ₦3.8M in escrow
+                    </div>
+                  </div>
+                  <div class="app-actions">
+                    <button
+                      class="btn btn-teal btn-sm"
+                      onclick="showToast('Application approved!')"
+                    >
+                      <i class="ti ti-check"></i> Approve
+                    </button>
+                    <button
+                      class="btn btn-ghost btn-sm"
+                      style="color: var(--red)"
+                      onclick="showToast('Application declined')"
+                    >
+                      <i class="ti ti-x"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="card sticky-card">
+                <div
+                  style="
+                    font-family: &quot;Fraunces&quot;, serif;
+                    font-size: 26px;
+                    color: var(--land);
+                    margin-bottom: 4px;
+                  "
+                >
+                  ₦3.8M<span
+                    style="
+                      font-size: 13px;
+                      color: var(--ink3);
+                      font-family: &quot;Sora&quot;, sans-serif;
+                      font-weight: 400;
+                    "
+                  >
+                    / year</span
+                  >
+                </div>
+                <div class="divider"></div>
+                <div class="table-row">
+                  <div class="table-row-left t-sm">Occupancy</div>
+                  <span class="badge badge-amber">Vacant</span>
+                </div>
+                <div class="table-row">
+                  <div class="table-row-left t-sm">Applications</div>
+                  <div class="table-row-right t-sm">2 pending</div>
+                </div>
+                <div class="table-row" style="border: none">
+                  <div class="table-row-left t-sm">Trust score</div>
+                  <div class="table-row-right t-sm">98/100</div>
+                </div>
+                <div class="divider"></div>
+                <button
+                  class="btn btn-outline-l btn-full"
+                  onclick="navTo('l-post')"
+                >
+                  Edit listing
+                </button>
+                <button
+                  class="btn btn-ghost btn-full"
+                  style="margin-top: 8px"
+                  onclick="showToast('Listing deactivated')"
+                >
+                  Deactivate
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── LANDLORD: TENANTS ─── -->
+      <div class="page" id="page-l-tenants">
+        <div class="container section" style="max-width: 800px">
+          <h1 class="t-h1" style="margin-bottom: 24px">Tenants</h1>
+          <div class="card" style="margin-bottom: 20px">
+            <h2 class="t-h3" style="margin-bottom: 14px">Active tenants</h2>
+            <div class="tenant-row">
+              <div
+                class="tenant-av"
+                style="background: linear-gradient(135deg, #0a5c48, #12876a)"
+              >
+                AO
+              </div>
+              <div class="tenant-info">
+                <div class="tenant-name">Adaeze Okonkwo</div>
+                <div class="tenant-sub">
+                  Flat 3A · Lekki Ph1 · Lease ends Jan 2026
+                </div>
+              </div>
+              <span class="badge badge-teal">Active</span>
+            </div>
+            <div class="tenant-row">
+              <div
+                class="tenant-av"
+                style="background: linear-gradient(135deg, #534ab7, #7f77dd)"
+              >
+                BM
+              </div>
+              <div class="tenant-info">
+                <div class="tenant-name">Babatunde Musa</div>
+                <div class="tenant-sub">
+                  Duplex B · Ikeja GRA · Lease ends Mar 2026
+                </div>
+              </div>
+              <span class="badge badge-teal">Active</span>
+            </div>
+            <div class="tenant-row" style="border: none">
+              <div
+                class="tenant-av"
+                style="background: linear-gradient(135deg, #854f0b, #ba7517)"
+              >
+                CN
+              </div>
+              <div class="tenant-info">
+                <div class="tenant-name">Chidi Nwosu</div>
+                <div class="tenant-sub">
+                  Studio · Yaba · Lease ends Feb 2025
+                </div>
+              </div>
+              <span class="badge badge-amber">Expiring</span>
+            </div>
+          </div>
+          <h2 class="t-h3" style="margin-bottom: 14px">Maintenance requests</h2>
+          <div class="maint-card">
+            <div class="maint-icon" style="background: var(--amber2)">
+              <i class="ti ti-droplet" style="color: var(--amber)"></i>
+            </div>
+            <div style="flex: 1">
+              <div class="t-body" style="font-weight: 700">Plumbing leak</div>
+              <div class="t-sm" style="color: var(--ink3); margin-top: 2px">
+                Adaeze · Flat 3A · Reported 2 days ago
+              </div>
+            </div>
+            <button
+              class="btn btn-teal btn-sm"
+              onclick="showToast('Marked as resolved')"
+            >
+              Resolve
+            </button>
+          </div>
+          <div class="maint-card">
+            <div class="maint-icon" style="background: var(--red2)">
+              <i class="ti ti-bolt" style="color: var(--red)"></i>
+            </div>
+            <div style="flex: 1">
+              <div class="t-body" style="font-weight: 700">
+                Electrical fault
+              </div>
+              <div class="t-sm" style="color: var(--ink3); margin-top: 2px">
+                Babatunde · Duplex B · Reported today
+              </div>
+            </div>
+            <button
+              class="btn btn-teal btn-sm"
+              onclick="showToast('Marked as resolved')"
+            >
+              Resolve
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── LANDLORD: POST LISTING ─── -->
+      <div class="page" id="page-l-post">
+        <div class="container section" style="max-width: 720px">
+          <h1 class="t-h1" style="margin-bottom: 6px">New listing</h1>
+          <p class="t-body" style="color: var(--ink3); margin-bottom: 24px">
+            Fill in the details — AI generates your description and runs a fraud
+            check automatically.
+          </p>
+          <div
+            class="upload-zone"
+            onclick="showToast('Photo upload available in live build')"
+          >
+            <i
+              class="ti ti-camera-plus"
+              style="font-size: 36px; color: var(--ink3)"
+            ></i>
+            <div
+              class="t-body"
+              style="color: var(--ink3); margin-top: 10px; font-weight: 600"
+            >
+              Upload property photos & videos
+            </div>
+            <div
+              class="t-sm"
+              style="color: var(--ink3); opacity: 0.6; margin-top: 4px"
+            >
+              AI will generate your listing description from the photos
+            </div>
+          </div>
+          <div class="grid-2">
+            <div class="form-group">
+              <label class="form-label">Property type</label>
+              <select class="form-input lf" id="lp-type">
+                <option>Flat</option>
+                <option>Self-contain</option>
+                <option>Duplex</option>
+                <option>Bungalow</option>
+                <option>Room</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Bedrooms</label>
+              <input
+                class="form-input lf"
+                id="lp-beds"
+                placeholder="e.g. 2"
+                type="number"
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Address</label>
+            <input
+              class="form-input lf"
+              id="lp-addr"
+              placeholder="e.g. Block C, Jubilee Estate, Yaba"
+              oninput="liveAddr(this.value)"
+            />
+            <div class="addr-box" id="addr-box">
+              <div class="t-xs" style="color: var(--ink3)">
+                AI structured address
+              </div>
+              <div class="addr-tags" id="addr-tags"></div>
+            </div>
+          </div>
+          <div class="grid-2">
+            <div class="form-group">
+              <label class="form-label">Annual rent (₦)</label>
+              <input
+                class="form-input lf"
+                id="lp-price"
+                placeholder="e.g. 2200000"
+                type="number"
+              />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Key features</label>
+              <input
+                class="form-input lf"
+                id="lp-feat"
+                placeholder="water, security, gen…"
+              />
+            </div>
+          </div>
+          <div
+            class="ai-box show"
+            id="ai-desc-box"
+            style="
+              background: var(--land3);
+              border-color: rgba(30, 18, 69, 0.12);
+            "
+          >
+            <div class="ai-box-label" style="color: var(--land)">
+              <i class="ti ti-sparkles"></i> AI-generated description
+            </div>
+            <div
+              class="ai-box-text"
+              id="ai-desc-text"
+              style="color: var(--ink3); font-style: italic"
+            >
+              Fill in the details above then tap Generate — AI will write your
+              listing.
+            </div>
+          </div>
+          <div class="ai-box" id="fraud-box">
+            <div class="ai-box-label">
+              <i class="ti ti-shield-check" style="color: var(--teal)"></i>
+              Verification check
+            </div>
+            <div id="fraud-checks"></div>
+            <div
+              class="flex-between"
+              style="margin-top: 10px; margin-bottom: 4px"
+            >
+              <span class="t-sm" style="color: var(--ink3); font-weight: 700"
+                >Trust score</span
+              >
+              <span
+                class="t-body"
+                style="font-weight: 700; color: var(--teal)"
+                id="fraud-lbl"
+              ></span>
+            </div>
+            <div class="score-bar-wrap">
+              <div
+                class="score-bar-fill"
+                id="fraud-bar"
+                style="width: 0%"
+              ></div>
+            </div>
+          </div>
+          <button
+            class="btn btn-land btn-full btn-lg"
+            id="lp-btn"
+            onclick="generateListing()"
+            style="margin-top: 8px"
+          >
+            Generate & verify with AI
+          </button>
+        </div>
+      </div>
+
+      <!-- ─── LANDLORD: FINANCE ─── -->
+      <div class="page" id="page-l-finance">
+        <div class="container section" style="max-width: 900px">
+          <h1 class="t-h1" style="margin-bottom: 24px">Finance</h1>
+          <div class="card card-dark-l" style="margin-bottom: 20px">
+            <div
+              class="t-xs"
+              style="color: rgba(255, 255, 255, 0.55); margin-bottom: 8px"
+            >
+              Total earned in 2024
+            </div>
+            <div
+              style="
+                font-family: &quot;Fraunces&quot;, serif;
+                font-size: clamp(28px, 5vw, 42px);
+                color: #fff;
+                font-weight: 700;
+              "
+            >
+              ₦16,800,000
+            </div>
+            <div
+              class="t-sm"
+              style="color: rgba(255, 255, 255, 0.5); margin-top: 5px"
+            >
+              3 properties · 7 tenants
+            </div>
+          </div>
+          <div class="metric-grid" style="margin-bottom: 24px">
+            <div class="metric-card">
+              <div class="metric-n">₦5.4M</div>
+              <div class="metric-l">This month</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-n t-n">₦300k</div>
+              <div class="metric-l">In escrow</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-n">3</div>
+              <div class="metric-l">Properties</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-n" style="color: var(--amber)">86%</div>
+              <div class="metric-l">Occupancy</div>
+            </div>
+          </div>
+          <div class="card" style="margin-bottom: 20px">
+            <h2 class="t-h3" style="margin-bottom: 14px">Revenue by zone</h2>
+            <div class="market-bars">
+              <div class="market-row">
+                <span class="market-lbl">Ikeja GRA</span>
+                <div class="market-track">
+                  <div
+                    class="market-fill"
+                    style="width: 90%; background: var(--land2)"
+                  >
+                    ₦3.8M
+                  </div>
+                </div>
+              </div>
+              <div class="market-row">
+                <span class="market-lbl">Lekki Ph1</span>
+                <div class="market-track">
+                  <div
+                    class="market-fill"
+                    style="width: 68%; background: var(--land)"
+                  >
+                    ₦2.2M
+                  </div>
+                </div>
+              </div>
+              <div class="market-row">
+                <span class="market-lbl">Yaba</span>
+                <div class="market-track">
+                  <div
+                    class="market-fill"
+                    style="
+                      width: 40%;
+                      background: var(--land4);
+                      color: var(--land5);
+                    "
+                  >
+                    ₦650k
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card" style="margin-bottom: 16px">
+            <h2 class="t-h3" style="margin-bottom: 14px">Recent payouts</h2>
+            <div class="table-row">
+              <div class="table-row-left t-body">Ikeja Duplex · Jan 2025</div>
+              <div style="font-weight: 700; color: var(--teal2)">+₦3.8M</div>
+            </div>
+            <div class="table-row">
+              <div class="table-row-left t-body">Lekki Flat · Jan 2025</div>
+              <div style="font-weight: 700; color: var(--teal2)">+₦2.2M</div>
+            </div>
+            <div class="table-row" style="border: none">
+              <div class="table-row-left t-body">Yaba Studio · Jan 2025</div>
+              <div style="font-weight: 700; color: var(--teal2)">+₦650k</div>
+            </div>
+          </div>
+          <button
+            class="btn btn-land btn-lg"
+            onclick="showToast('Payout initiated to your GTBank account')"
+          >
+            Request payout
+          </button>
+        </div>
+      </div>
+
+      <!-- ─── LANDLORD: PROFILE ─── -->
+      <div class="page" id="page-l-profile">
+        <div class="container section" style="max-width: 720px">
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 20px;
+              margin-bottom: 28px;
+            "
+          >
+            <div class="profile-av l-av">UG</div>
+            <div>
+              <h1 class="t-h1" style="margin-bottom: 4px">
+                Uzoigwe Greatmiracle
+              </h1>
+              <div class="t-sm" style="color: var(--ink3); margin-bottom: 8px">
+                +234 703 163 5484
+              </div>
+              <div style="display: flex; gap: 7px; flex-wrap: wrap">
+                <span class="badge badge-teal">Tenant</span
+                ><span class="badge badge-land"
+                  ><i class="ti ti-building-estate"></i> Verified Landlord</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="card" style="margin-bottom: 16px">
+            <div class="table-row" onclick="navTo('l-dash')">
+              <div class="table-row-left">
+                <i class="ti ti-layout-dashboard" style="color: var(--ink3)"></i
+                >  Dashboard
+              </div>
+              <div class="table-row-right">
+                <i class="ti ti-chevron-right"></i>
+              </div>
+            </div>
+            <div class="table-row" onclick="navTo('l-finance')">
+              <div class="table-row-left">
+                <i class="ti ti-cash" style="color: var(--ink3)"></i>  Finance &
+                payouts
+              </div>
+              <div class="table-row-right">
+                ₦16.8M <i class="ti ti-chevron-right"></i>
+              </div>
+            </div>
+            <div class="table-row">
+              <div class="table-row-left">
+                <i class="ti ti-shield" style="color: var(--ink3)"></i
+                >  Verification
+              </div>
+              <span class="badge badge-land">Approved</span>
+            </div>
+            <div class="table-row">
+              <div class="table-row-left">
+                <i class="ti ti-building-bank" style="color: var(--ink3)"></i
+                >  Bank account
+              </div>
+              <div class="table-row-right">
+                GTBank ···4521 <i class="ti ti-chevron-right"></i>
+              </div>
+            </div>
+            <div class="table-row" style="border: none">
+              <div class="table-row-left">
+                <i class="ti ti-bell" style="color: var(--ink3)"></i
+                >  Notifications
+              </div>
+              <div class="table-row-right">
+                <i class="ti ti-chevron-right"></i>
+              </div>
+            </div>
+          </div>
+          <div
+            class="card card-teal"
+            style="cursor: pointer"
+            onclick="setMode('tenant')"
+          >
+            <div class="flex-row" style="gap: 14px">
+              <div
+                style="
+                  width: 48px;
+                  height: 48px;
+                  border-radius: 14px;
+                  background: var(--teal3);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  flex-shrink: 0;
+                "
+              >
+                <i
+                  class="ti ti-home"
+                  style="font-size: 24px; color: var(--teal)"
+                ></i>
+              </div>
+              <div style="flex: 1">
+                <div
+                  style="
+                    font-family: &quot;Fraunces&quot;, serif;
+                    font-size: 16px;
+                    color: var(--teal5);
+                    margin-bottom: 3px;
+                  "
+                >
+                  Switch to Tenant Mode
+                </div>
+                <div class="t-sm" style="color: var(--teal5)">
+                  Search homes, escrow payments, save listings
+                </div>
+              </div>
+              <i
+                class="ti ti-arrow-right"
+                style="color: var(--teal); font-size: 20px; flex-shrink: 0"
+              ></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ═══ BOTTOM NAV (mobile) ═══ -->
+    <nav class="bottom-nav">
+      <div class="bottom-nav-inner" id="bottom-nav-inner">
+        <!-- filled by JS -->
+      </div>
+    </nav>
+
+    <script>
+      // ══════════════════════════════════════
+      // STATE
+      // ══════════════════════════════════════
+      let mode = "tenant";
+      let landlordApproved = false;
+      const chatHistory = [];
+
+      // ══════════════════════════════════════
+      // NAV CONFIGS
+      // ══════════════════════════════════════
+      const tenantNav = [
+        { icon: "ti-home", label: "Home", page: "home" },
+        { icon: "ti-heart", label: "Saved", page: "t-saved" },
+        { icon: "ti-file-text", label: "Lease", page: "t-lease" },
+        { icon: "ti-message", label: "Chat", page: "t-chat" },
+        { icon: "ti-user", label: "Profile", page: "t-profile" },
+      ];
+      const landlordNav = [
+        { icon: "ti-layout-dashboard", label: "Dashboard", page: "l-dash" },
+        { icon: "ti-users", label: "Tenants", page: "l-tenants" },
+        { icon: "ti-plus", label: "List", page: "l-post" },
+        { icon: "ti-cash", label: "Finance", page: "l-finance" },
+        { icon: "ti-user", label: "Profile", page: "l-profile" },
+      ];
+
+      // ══════════════════════════════════════
+      // RENDER NAV
+      // ══════════════════════════════════════
+      function renderNav(items, activeMode) {
+        // Desktop nav links
+        const linksEl = document.getElementById("nav-links");
+        linksEl.innerHTML = items
+          .map(
+            (it) => `
+    <button class="nav-link" onclick="navTo('${it.page}')" data-page="${it.page}">
+      <i class="ti ${it.icon}"></i> ${it.label}
+    </button>`,
+          )
+          .join("");
+
+        // Mobile bottom nav
+        const bnEl = document.getElementById("bottom-nav-inner");
+        bnEl.innerHTML = items
+          .map(
+            (it) => `
+    <button class="bn-item" onclick="navTo('${it.page}')" data-page="${it.page}">
+      <i class="ti ${it.icon}"></i>
+      <span class="bn-label">${it.label}</span>
+    </button>`,
+          )
+          .join("");
+      }
+
+      function setActiveNav(pageKey) {
+        const cls = mode === "tenant" ? "active-t" : "active-l";
+        document.querySelectorAll(".nav-link, .bn-item").forEach((el) => {
+          el.classList.remove("active-t", "active-l");
+          if (el.dataset.page === pageKey) el.classList.add(cls);
+        });
+      }
+
+      // ══════════════════════════════════════
+      // NAVIGATION
+      // ══════════════════════════════════════
+      function navTo(pageKey) {
+        document
+          .querySelectorAll(".page")
+          .forEach((p) => p.classList.remove("active"));
+        const el = document.getElementById("page-" + pageKey);
+        if (el) {
+          el.classList.add("active");
+          el.scrollIntoView({ behavior: "instant", block: "start" });
+        }
+        window.scrollTo(0, 0);
+        setActiveNav(pageKey);
+        document.getElementById("mode-modal").classList.remove("show");
+      }
+
+      // ══════════════════════════════════════
+      // MODE SYSTEM
+      // ══════════════════════════════════════
+      function setMode(m) {
+        mode = m;
+        const nav = document.getElementById("top-nav");
+        const logo = document.getElementById("nav-logo");
+        const pill = document.getElementById("mode-pill-btn");
+        const pillLabel = document.getElementById("mode-pill-label");
+        const avatar = document.getElementById("nav-avatar");
+        document.getElementById("dot-t").style.display =
+          m === "tenant" ? "block" : "none";
+        document.getElementById("dot-l").style.display =
+          m === "landlord" ? "block" : "none";
+
+        if (m === "tenant") {
+          nav.className = "top-nav";
+          logo.style.color = "var(--teal)";
+          pill.className = "mode-pill t-pill";
+          pillLabel.textContent = "Tenant Mode";
+          avatar.className = "avatar-btn t-av";
+          renderNav(tenantNav, "tenant");
+          navTo("home");
+        } else {
+          nav.className = "top-nav lmode";
+          logo.style.color = "var(--land)";
+          pill.className = "mode-pill l-pill";
+          pillLabel.textContent = "Landlord Mode";
+          avatar.className = "avatar-btn l-av";
+          renderNav(landlordNav, "landlord");
+          navTo("l-dash");
+        }
+        document.getElementById("mode-modal").classList.remove("show");
+      }
+
+      function openModeModal() {
+        document.getElementById("mode-modal").classList.add("show");
+      }
+      function closeModeModal(e) {
+        if (!e || e.target === document.getElementById("mode-modal"))
+          document.getElementById("mode-modal").classList.remove("show");
+      }
+      function handleLandlordSwitch() {
+        document.getElementById("mode-modal").classList.remove("show");
+        if (landlordApproved) {
+          setMode("landlord");
+        } else {
+          navTo("ll-onboard");
+        }
+      }
+      function approveLandlord() {
+        landlordApproved = true;
+        setMode("landlord");
+        showToast("🎉 Landlord account approved! Welcome.");
+      }
+
+      // Update ll-opt-desc on open
+      const origOpen = openModeModal;
+      window.openModeModal = () => {
+        document.getElementById("ll-opt-desc").textContent = landlordApproved
+          ? "Manage properties, tenants, earn income"
+          : "Verification required — tap to start";
+        origOpen();
+      };
+
+      // ══════════════════════════════════════
+      // TOAST
+      // ══════════════════════════════════════
+      function showToast(msg) {
+        const t = document.getElementById("toast");
+        t.textContent = msg;
+        t.classList.add("show");
+        setTimeout(() => t.classList.remove("show"), 2800);
+      }
+
+      // ══════════════════════════════════════
+      // SAVE TOGGLE
+      // ══════════════════════════════════════
+      function toggleSave(btn) {
+        const i = btn.querySelector("i");
+        if (i.classList.contains("ti-heart")) {
+          i.className = "ti ti-heart-filled";
+          i.style.color = "#ff4d6d";
+          showToast("Saved to favourites");
+        } else {
+          i.className = "ti ti-heart";
+          i.style.color = "#fff";
+          showToast("Removed from saved");
+        }
+      }
+      function toggleSaveBtn(btn) {
+        if (btn.innerHTML.includes("heart-filled")) {
+          btn.innerHTML = '<i class="ti ti-heart"></i> Save';
+          showToast("Removed from saved");
+        } else {
+          btn.innerHTML =
+            '<i class="ti ti-heart-filled" style="color:#ff4d6d"></i> Saved';
+          showToast("Saved to favourites");
+        }
+      }
+
+      // ══════════════════════════════════════
+      // PILLS
+      // ══════════════════════════════════════
+      function fp(el, m) {
+        el.closest(".pills")
+          .querySelectorAll(".pill")
+          .forEach((p) => p.classList.remove("on-t", "on-l"));
+        el.classList.add(m === "t" ? "on-t" : "on-l");
+      }
+
+      // ══════════════════════════════════════
+      // ADDRESS PARSER (Layer 3)
+      // ══════════════════════════════════════
+      function liveAddr(v) {
+        const box = document.getElementById("addr-box");
+        const tags = document.getElementById("addr-tags");
+        if (v.length < 5) {
+          box.style.display = "none";
+          return;
+        }
+        box.style.display = "block";
+        const estate = v.match(/(\w[\w\s]*?)\s*Estate/i);
+        const block = v.match(/Block\s*([A-Z0-9]+)/i);
+        const floor = v.match(/(\d+)\w*\s*floor/i);
+        const uid = "RH-" + Date.now().toString(36).slice(-5).toUpperCase();
+        const parts = [
+          ["Estate", estate ? estate[1].trim() + " Estate" : "—"],
+          ["Block", block ? block[1] : "—"],
+          ["Floor", floor ? floor[1] : "Ground"],
+          ["Unit ID", uid],
+        ];
+        tags.innerHTML = parts
+          .map(([l, v2]) => `<span class="addr-tag">${l}: ${v2}</span>`)
+          .join("");
+      }
+
+      // ══════════════════════════════════════
+      // AI API
+      // ══════════════════════════════════════
+      async function callAI(system, user) {
+        const r = await fetch("api.anthropic.com/v1/messages", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            model: "claude-sonnet-4-20250514",
+            max_tokens: 900,
+            system,
+            messages: [{ role: "user", content: user }],
+          }),
+        });
+        const d = await r.json();
+        if (d.error) throw new Error(d.error.message);
+        return d.content.map((b) => b.text || "").join("");
+      }
+
+      // ══════════════════════════════════════
+      // LISTING GENERATOR + FRAUD CHECK (Layers 2 & 4)
+      // ══════════════════════════════════════
+      async function generateListing() {
+        const type = document.getElementById("lp-type").value;
+        const addr = document.getElementById("lp-addr").value;
+        const price = document.getElementById("lp-price").value;
+        const beds = document.getElementById("lp-beds").value || "1";
+        const feat =
+          document.getElementById("lp-feat").value || "standard amenities";
+        if (!addr || !price) {
+          showToast("Enter address and rent price first");
+          return;
+        }
+        const btn = document.getElementById("lp-btn");
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner"></span>AI is working…';
+        const dt = document.getElementById("ai-desc-text");
+        dt.style.fontStyle = "italic";
+        dt.style.color = "var(--ink3)";
+        dt.textContent = "Generating listing description…";
+        document.getElementById("fraud-box").classList.remove("show");
+        try {
+          const desc = await callAI(
+            `You are an AI listing assistant for RentHopa, a Nigerian rental platform that eliminates agents and uses escrow payments. Write a compelling 3-sentence property listing. Be specific, warm, and mention the escrow-protection as a trust signal.`,
+            `${beds}-bedroom ${type} in ${addr}. Rent: ₦${Number(price).toLocaleString()}/year. Features: ${feat}.`,
+          );
+          dt.textContent = desc;
+          dt.style.fontStyle = "normal";
+          dt.style.color = "var(--ink)";
+
+          const raw = await callAI(
+            `You are a fraud detection AI for RentHopa Nigeria. Return ONLY valid JSON, no markdown, no text:
+{"score":85,"checks":[{"label":"Price vs market","pass":true},{"label":"Address quality","pass":true},{"label":"No duplicate signals","pass":true},{"label":"Property docs","pass":false}]}`,
+            `${beds}-bedroom ${type} in ${addr}. Rent: ₦${Number(price).toLocaleString()}/year.`,
+          );
+          let fraud;
+          try {
+            fraud = JSON.parse(raw.replace(/```json|```/g, "").trim());
+          } catch {
+            fraud = {
+              score: 82,
+              checks: [
+                { label: "Price vs market", pass: true },
+                { label: "Address quality", pass: true },
+                { label: "No duplicate signals", pass: true },
+                { label: "Property docs", pass: false },
+              ],
+            };
+          }
+          const score = fraud.score || 80;
+          const col =
+            score >= 85
+              ? "var(--teal2)"
+              : score >= 60
+                ? "var(--amber)"
+                : "var(--red)";
+          const lbl =
+            score >= 85
+              ? "Verified"
+              : score >= 60
+                ? "Pending review"
+                : "Suspicious";
+          document.getElementById("fraud-lbl").textContent =
+            `${score}/100 — ${lbl}`;
+          document.getElementById("fraud-bar").style.width = score + "%";
+          document.getElementById("fraud-bar").style.background = col;
+          document.getElementById("fraud-checks").innerHTML = (
+            fraud.checks || []
+          )
+            .map(
+              (c) => `
+      <div class="fraud-row" style="background:${c.pass ? "var(--teal3)" : "var(--red2)"}">
+        <i class="ti ti-${c.pass ? "check" : "x"}" style="color:${c.pass ? "var(--teal)" : "var(--red)"}"></i>
+        <span style="color:${c.pass ? "var(--teal5)" : "var(--red)"};">${c.label}</span>
+      </div>`,
+            )
+            .join("");
+          document.getElementById("fraud-box").classList.add("show");
+          showToast("✅ Listing generated and verified!");
+        } catch (e) {
+          showToast("Connection error — check console");
+          console.error(e);
+        }
+        btn.disabled = false;
+        btn.innerHTML = "Generate & verify with AI";
+      }
+
+      // ══════════════════════════════════════
+      // SUPPORT CHATBOT (Layer 5)
+      // ══════════════════════════════════════
+      async function sendChat() {
+        const inp = document.getElementById("chat-in");
+        const msg = inp.value.trim();
+        if (!msg) return;
+        inp.value = "";
+        addBubble("chat-msgs", msg, "user");
+        chatHistory.push({ role: "user", content: msg });
+        const thinking = addBubble("chat-msgs", "Thinking…", "bot thinking");
+        try {
+          const resp = await callAI(
+            `You are the RentHopa AI support assistant. RentHopa is a Nigerian trust-first rental platform: no agents, escrow payments — landlord only paid after key handover. Users can be both tenants and landlords under one account. Be warm, concise, helpful. 2-3 sentences max.`,
+            chatHistory.map((m) => `${m.role}: ${m.content}`).join("\n"),
+          );
+          thinking.textContent = resp;
+          thinking.classList.remove("thinking");
+          chatHistory.push({ role: "assistant", content: resp });
+        } catch {
+          thinking.textContent = "Something went wrong. Please try again.";
+          thinking.classList.remove("thinking");
+        }
+        scrollChat("chat-msgs");
+      }
+      function addBubble(cid, text, cls) {
+        const w = document.getElementById(cid);
+        const b = document.createElement("div");
+        b.className = "bubble " + cls;
+        b.textContent = text;
+        w.appendChild(b);
+        scrollChat(cid);
+        return b;
+      }
+      function scrollChat(id) {
+        const w = document.getElementById(id);
+        if (w) w.scrollTop = w.scrollHeight;
+      }
+
+      // ══════════════════════════════════════
+      // SELFIE VERIFY (Layer 4)
+      // ══════════════════════════════════════
+      async function doSelfieVerify() {
+        const btn = document.getElementById("selfie-btn");
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner"></span>Verifying face…';
+        const box = document.getElementById("selfie-result");
+        const txt = document.getElementById("selfie-text");
+        txt.style.fontStyle = "italic";
+        txt.textContent = "Analysing biometrics…";
+        try {
+          const r = await callAI(
+            `You are a biometric identity verification AI. Simulate a positive face match result in 2 sentences, with a confidence score above 95%. Be professional and reassuring.`,
+            "User: Uzoigwe Greatmiracle. Running liveness check and face match against NIN card.",
+          );
+          txt.textContent = r;
+          txt.style.fontStyle = "normal";
+          setTimeout(() => navTo("ll-pending"), 1800);
+        } catch {
+          txt.textContent =
+            "Face match successful — confidence 97.4%. Proceeding to admin review.";
+          txt.style.fontStyle = "normal";
+          setTimeout(() => navTo("ll-pending"), 1800);
+        }
+        btn.disabled = false;
+        btn.innerHTML = "Take selfie & verify";
+      }
+
+      // ══════════════════════════════════════
+      // INIT
+      // ══════════════════════════════════════
+      setMode("tenant");
+    </script>
+  </body>
+</html>
